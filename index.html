@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>XK TEAM • Innovation Labs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>XK TEAM — Next‑gen Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -14,414 +14,475 @@
         }
 
         body {
-            background: radial-gradient(circle at 20% 30%, #0a0f1e, #03060c);
+            background: #0A0C15;
             font-family: 'Inter', sans-serif;
-            color: #EFF3F8;
-            min-height: 100vh;
-            padding: 2rem 1.5rem;
+            color: #F0F4FF;
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        /* animated background particles */
-        .particles {
+        /* animated gradient orb */
+        .orb-bg {
+            position: fixed;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle at 30% 40%, rgba(0, 180, 255, 0.15), rgba(15, 25, 55, 0.9));
+            filter: blur(80px);
+            z-index: -2;
+            animation: drift 22s infinite alternate ease-in-out;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+            100% { transform: translate(3%, 2%) scale(1.05); opacity: 1; }
+        }
+
+        .noise {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            background: repeating-radial-gradient(circle at 20% 30%, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.02) 2px, transparent 3px);
+            pointer-events: none;
             z-index: -1;
         }
 
-        .particle {
-            position: absolute;
-            background: rgba(59, 130, 246, 0.2);
-            border-radius: 50%;
-            animation: floatParticle 12s infinite ease-in-out;
-            pointer-events: none;
-        }
-
-        @keyframes floatParticle {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.6; }
-            100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
-        }
-
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
             position: relative;
             z-index: 2;
         }
 
         /* header */
-        .logo {
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
-        .logo-icon {
+
+        .x-shield {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+            background: linear-gradient(145deg, #1E2A5E, #0F172A);
             border-radius: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            box-shadow: 0 10px 20px -5px #0F2B6D;
+            margin-bottom: 1rem;
+            box-shadow: 0 15px 30px -10px rgba(0, 100, 255, 0.3);
+            border: 1px solid rgba(59,130,246,0.4);
         }
-        .logo-icon span {
-            font-size: 2.2rem;
+
+        .x-shield span {
             font-weight: 800;
-            color: white;
-            letter-spacing: 2px;
-        }
-        .logo h1 {
             font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #E0F2FE, #93C5FD);
+            background: linear-gradient(135deg, #E0F2FE, #3B82F6);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
         }
-        .logo p {
-            color: #8BA3C7;
-            font-size: 0.9rem;
+
+        .logo-area h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #FFFFFF, #94A3F8);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
         }
 
-        /* glass tabs */
-        .tab-bar {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
+        .logo-area p {
+            color: #7E8BAE;
+            font-size: 0.85rem;
+            margin-top: 6px;
         }
+
+        /* tab navigation */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+        }
+
         .tab-btn {
-            background: rgba(12, 20, 35, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(59, 130, 246, 0.4);
+            background: rgba(15, 25, 45, 0.55);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59,130,246,0.3);
             padding: 0.7rem 1.5rem;
             border-radius: 60px;
             font-weight: 600;
             font-size: 0.9rem;
             cursor: pointer;
-            transition: 0.2s;
-            color: #CBD5E1;
+            transition: all 0.25s;
+            color: #B9C7E3;
+            letter-spacing: -0.2px;
         }
+
+        .tab-btn i {
+            margin-right: 8px;
+        }
+
         .tab-btn.active {
-            background: linear-gradient(95deg, #2563EB, #3B82F6);
+            background: linear-gradient(100deg, #1E3A8A, #3B82F6);
             border-color: transparent;
             color: white;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            box-shadow: 0 4px 14px rgba(59,130,246,0.4);
         }
+
         .tab-btn:hover:not(.active) {
-            background: rgba(59, 130, 246, 0.2);
+            background: rgba(59,130,246,0.2);
             border-color: #3B82F6;
         }
 
-        /* tab content */
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* cards & grid */
+        /* cards */
         .card {
-            background: rgba(8, 12, 20, 0.7);
+            background: rgba(12, 20, 35, 0.65);
             backdrop-filter: blur(16px);
             border-radius: 2rem;
             padding: 1.8rem;
-            border: 1px solid rgba(59, 130, 246, 0.25);
-            margin-bottom: 1.5rem;
-            transition: 0.2s;
+            border: 1px solid rgba(59,130,246,0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s;
         }
-        .glass-title {
-            font-size: 1.2rem;
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
+            border-color: rgba(59,130,246,0.6);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #60A5FA;
-        }
-        .contact-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
             gap: 12px;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            color: #90CDF4;
+        }
+
+        .section-title i {
+            font-size: 1.6rem;
+            background: linear-gradient(145deg, #60A5FA, #3B82F6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .description {
+            color: #CCD6F0;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin: 1.2rem 0;
+        }
+
+        .feature-tag {
+            background: rgba(59,130,246,0.15);
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid rgba(59,130,246,0.3);
+        }
+
+        /* contact list */
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(59,130,246,0.2);
         }
         .contact-name {
             font-weight: 600;
-            min-width: 100px;
-            color: #EFF3F8;
+            min-width: 140px;
         }
         .contact-number {
             font-family: monospace;
             background: #0B0F18;
-            padding: 6px 12px;
+            padding: 6px 14px;
             border-radius: 30px;
             font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
         .contact-link {
-            color: #3B82F6;
+            color: #60A5FA;
             text-decoration: none;
             font-weight: 500;
             transition: 0.2s;
         }
         .contact-link:hover {
+            color: #A5D8FF;
             text-decoration: underline;
-            color: #60A5FA;
         }
 
-        .developer-grid {
+        /* dev grid */
+        .dev-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.2rem;
+            margin: 1.5rem 0;
         }
+
         .dev-card {
-            background: #0B0F18;
+            background: #0B0F1A;
             border-radius: 1.5rem;
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: center;
-            border: 1px solid rgba(59,130,246,0.3);
+            border: 1px solid rgba(59,130,246,0.25);
             transition: all 0.2s;
         }
+
         .dev-card:hover {
-            transform: translateY(-4px);
             border-color: #3B82F6;
+            background: #0E1422;
         }
+
         .dev-name {
             font-size: 1.1rem;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 4px;
         }
+
         .dev-role {
             font-size: 0.7rem;
-            color: #8CA3C7;
+            color: #8BA3C7;
             margin-bottom: 8px;
         }
-        .dev-desc {
+
+        .wa-mini {
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1E293B;
+            padding: 4px 12px;
+            border-radius: 40px;
             font-size: 0.7rem;
-            color: #B0C4DE;
+            text-decoration: none;
+            color: #E0F2FE;
         }
 
         .channel-btn {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: linear-gradient(95deg, #1E3A8A, #2563EB);
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 60px;
+            font-weight: 700;
             text-decoration: none;
-            font-weight: 600;
             color: white;
-            margin-top: 8px;
+            margin-top: 16px;
             transition: 0.2s;
         }
+
         .channel-btn:hover {
             transform: scale(1.02);
-            box-shadow: 0 0 18px #2563EB;
-        }
-
-        .description-text {
-            line-height: 1.6;
-            color: #CBD5E1;
-            font-size: 0.95rem;
+            box-shadow: 0 8px 20px -5px #1E3A8A;
         }
 
         .footer {
+            margin-top: 4rem;
             text-align: center;
-            margin-top: 3rem;
             font-size: 0.7rem;
-            color: #5B6E8C;
+            color: #5A6E8F;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 680px) {
-            .contact-item {
+            .container {
+                padding: 1rem;
+            }
+            .contact-row {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 8px;
             }
             .tab-btn {
                 padding: 0.5rem 1rem;
                 font-size: 0.8rem;
             }
-            body {
-                padding: 1rem;
+            .logo-area h1 {
+                font-size: 1.7rem;
             }
         }
     </style>
 </head>
 <body>
-<div class="particles" id="particles"></div>
+<div class="orb-bg"></div>
+<div class="noise"></div>
+
 <div class="container">
-    <div class="logo">
-        <div class="logo-icon"><span>XK</span></div>
+    <div class="logo-area">
+        <div class="x-shield"><span>XK</span></div>
         <h1>XK TEAM</h1>
-        <p>Innovation • Security • Performance</p>
+        <p>next‑gen · performance · security</p>
     </div>
 
-    <!-- Tab Navigation -->
-    <div class="tab-bar">
-        <button class="tab-btn active" data-tab="welcome">✦ Welcome</button>
-        <button class="tab-btn" data-tab="contact">📞 Contact Support</button>
-        <button class="tab-btn" data-tab="channel">📱 WhatsApp Channel</button>
-        <button class="tab-btn" data-tab="credits">🌟 Core Team</button>
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="welcome"><i class="fas fa-compass"></i> Welcome</button>
+        <button class="tab-btn" data-tab="support"><i class="fas fa-headset"></i> Support</button>
+        <button class="tab-btn" data-tab="channel"><i class="fab fa-whatsapp"></i> Channel</button>
+        <button class="tab-btn" data-tab="credits"><i class="fas fa-users"></i> Core team</button>
     </div>
 
-    <!-- Welcome Tab -->
-    <div class="tab-content active" id="tab-welcome">
+    <!-- WELCOME TAB -->
+    <div class="tab-content active" id="welcome-tab">
         <div class="card">
-            <div class="glass-title"><i class="fas fa-rocket"></i> About XK TEAM</div>
-            <div class="description-text">
-                <p style="margin-bottom: 16px;">XK TEAM adalah collective developer dan security enthusiast yang berfokus pada pembuatan tools modular, aplikasi injection, dan solusi performa untuk gaming & system optimization. Kami menggabungkan teknologi modern dengan arsitektur aman.</p>
-                <p style="margin-bottom: 16px;"><strong>Modules & Features:</strong> Smart DPI, Aim Stability, Touch Responsive, GPU/CPU Boost, Crosshair Overlay, Real-time monitoring, dan masih banyak lagi. Semua module dirancang untuk kompatibilitas tinggi dengan Android (Shizuku & non-root).</p>
-                <p style="margin-bottom: 16px;">✨ Proyek unggulan: <strong>XK TOOLS</strong> – all-in-one optimization & injection suite, mendukung berbagai tier (Basic, Ultra, Vixo, Delta, Sonic, Lunar, Athena, Privet). Database realtime, update berkala, dan support dedicated team.</p>
-                <p>⚡ "Built by gamers, for enthusiasts" ⚡</p>
+            <div class="section-title"><i class="fas fa-bolt"></i> XK TOOLS · ecosystem</div>
+            <div class="description">
+                <p><strong>XK TEAM</strong> menghadirkan aplikasi optimasi & injection suite untuk Android dengan integrasi Shizuku, crosshair overlay, dan fitur tier premium. Dibangun dengan arsitektur modern, realtime database, dan fokus pada stabilitas.</p>
+                <div class="feature-list">
+                    <span class="feature-tag">⚡ Smart DPI</span>
+                    <span class="feature-tag">🎯 Aim stability</span>
+                    <span class="feature-tag">🖱️ Touch responsive</span>
+                    <span class="feature-tag">📈 GPU/CPU Boost</span>
+                    <span class="feature-tag">🎨 Custom crosshair</span>
+                    <span class="feature-tag">🛡️ Shizuku native</span>
+                    <span class="feature-tag">📊 realtime monitor</span>
+                </div>
+                <p>Multi‑tier: Basic, Ultra, Vixo, Delta, Sonic, Lunar, Athena, Privet — setiap tier membuka fitur eksklusif. Dashboard terintegrasi Firebase + admin panel lengkap.</p>
             </div>
-            <div style="margin-top: 24px;">
-                <div class="glass-title"><i class="fas fa-code-branch"></i> Our Ecosystem</div>
-                <div class="description-text">
-                    <ul style="margin-left: 20px;">
-                        <li>🔹 Remote Shell Injection via Shizuku</li>
-                        <li>🔹 Custom Crosshair with Overlay permission</li>
-                        <li>🔹 Performance Monitor (CPU/GPU/RAM/FPS)</li>
-                        <li>🔹 Tier-based Feature Access & Firebase integration</li>
-                        <li>🔹 Web Dashboard + Native APK</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Support Tab -->
-    <div class="tab-content" id="tab-contact">
-        <div class="card">
-            <div class="glass-title"><i class="fas fa-headset"></i> Contact Support</div>
-            <div class="contact-list">
-                <div class="contact-item">
-                    <span class="contact-name"><i class="fab fa-whatsapp"></i> Xyro (Owner)</span>
-                    <span class="contact-number">+62 831-5141-3591</span>
-                    <a href="https://wa.me/6283151413591" class="contact-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat</a>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-name"><i class="fas fa-user-astronaut"></i> Other Channels</span>
-                    <span class="contact-number">Via WhatsApp Channel & Social</span>
-                    <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="contact-link" target="_blank">Join Channel</a>
-                </div>
-                <div class="description-text" style="margin-top: 12px;">
-                    For technical issues, feature requests, or account support, please contact the team via WhatsApp or our official channel. Response within 24h.
+            <div style="margin-top: 20px;">
+                <div class="section-title"><i class="fas fa-code-branch"></i> Modules & technology</div>
+                <div class="description">
+                    ✔️ Smart DPI + resolution scaling <br>
+                    ✔️ Easy drag & aim stability ( 3% / 6% ) <br>
+                    ✔️ GPU/CPU Boost (performance profile) <br>
+                    ✔️ Crosshair overlay (color, shape, size, on‑the‑fly) <br>
+                    ✔️ Remote shell execution (Shizuku based) <br>
+                    ✔️ Secure login via Firebase + session storage
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- WhatsApp Channel Tab -->
-    <div class="tab-content" id="tab-channel">
+    <!-- SUPPORT TAB -->
+    <div class="tab-content" id="support-tab">
         <div class="card">
-            <div class="glass-title"><i class="fab fa-whatsapp"></i> XK TEAM Official Channel</div>
-            <div class="description-text">
-                <p>Dapatkan update terbaru, sneak peek fitur, pengumuman maintenance, dan event eksklusif langsung di WhatsApp Channel resmi kami.</p>
-                <div style="margin: 20px 0;">
-                    <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="channel-btn" target="_blank">
-                        <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i> Gabung Sekarang
-                    </a>
-                </div>
-                <p>Link channel: <code style="background:#0B0F18; padding:4px 8px; border-radius:12px;">https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21</code></p>
+            <div class="section-title"><i class="fas fa-life-ring"></i> Contact support</div>
+            <div class="contact-row">
+                <span class="contact-name"><i class="fab fa-whatsapp"></i> Xyro (Owner / Support)</span>
+                <span class="contact-number">+62 831-5141-3591</span>
+                <a href="https://wa.me/6283151413591" class="contact-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat now</a>
+            </div>
+            <div class="description" style="margin-top: 16px;">
+                <i class="fas fa-clock"></i> Response within 24h · 09:00 – 21:00 WIB <br>
+                Untuk pertanyaan teknis, upgrade tier, atau laporan bug, hubungi via WhatsApp.
             </div>
         </div>
     </div>
 
-    <!-- Credits / Developer Tab -->
-    <div class="tab-content" id="tab-credits">
+    <!-- WHATSAPP CHANNEL TAB -->
+    <div class="tab-content" id="channel-tab">
+        <div class="card" style="text-align: center;">
+            <div class="section-title" style="justify-content: center;"><i class="fab fa-whatsapp"></i> Official channel</div>
+            <div class="description">
+                Dapatkan update fitur, rilis module baru, tips, dan announcement langsung dari tim XK TEAM.
+            </div>
+            <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="channel-btn" target="_blank">
+                <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Join WhatsApp Channel
+            </a>
+            <div style="margin-top: 20px; font-size: 0.7rem; word-break: break-all;">
+                <code>https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21</code>
+            </div>
+        </div>
+    </div>
+
+    <!-- CREDITS / TEAM TAB -->
+    <div class="tab-content" id="credits-tab">
         <div class="card">
-            <div class="glass-title"><i class="fas fa-users"></i> Friend & Developer</div>
-            <div class="developer-grid">
+            <div class="section-title"><i class="fas fa-users"></i> Friend & Developer</div>
+            <div class="dev-grid">
                 <div class="dev-card">
                     <div class="dev-name">Xyro</div>
-                    <div class="dev-role">Founder & Lead Dev</div>
-                    <div class="dev-desc">Backend, Firebase architecture, core features</div>
-                    <a href="https://wa.me/6283151413591" class="contact-link" style="font-size:0.7rem;" target="_blank">📞 Contact</a>
+                    <div class="dev-role">Founder · Lead Dev</div>
+                    <div class="dev-desc">Backend, Firebase, system architecture</div>
+                    <a href="https://wa.me/6283151413591" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
                 </div>
                 <div class="dev-card">
                     <div class="dev-name">Vanx</div>
                     <div class="dev-role">UI/UX Designer</div>
-                    <div class="dev-desc">Dashboard, animations, visual identity</div>
-                    <a href="https://wa.me/6285211522956" class="contact-link" style="font-size:0.7rem;" target="_blank">📞 Contact</a>
+                    <div class="dev-desc">Dashboard, visual identity, animations</div>
+                    <a href="https://wa.me/6285211522956" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
                 </div>
                 <div class="dev-card">
                     <div class="dev-name">Komalx</div>
                     <div class="dev-role">Code Infrastructure</div>
-                    <div class="dev-desc">Shell executor, shizuku integration, native modules</div>
-                    <a href="https://wa.me/6281916624978" class="contact-link" style="font-size:0.7rem;" target="_blank">📞 Contact</a>
+                    <div class="dev-desc">Shizuku integration, native shell, modules</div>
+                    <a href="https://wa.me/6281916624978" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
                 </div>
                 <div class="dev-card">
                     <div class="dev-name">NozzTr</div>
                     <div class="dev-role">Security Checker</div>
-                    <div class="dev-desc">Penetration testing, encryption, safety audits</div>
-                    <a href="https://wa.me/6285691475916" class="contact-link" style="font-size:0.7rem;" target="_blank">📞 Contact</a>
+                    <div class="dev-desc">Penetration test, encryption, safety</div>
+                    <a href="https://wa.me/6285691475916" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
                 </div>
             </div>
-            <div class="description-text" style="margin-top: 20px;">
-                <strong>Credits & Appreciation</strong><br>
-                Setiap module, fitur, dan update melewati proses ketat dari tim. XK TEAM dibangun dengan dedikasi tinggi untuk memberikan tools terbaik bagi komunitas.
+            <div class="description" style="margin-top: 16px; border-top: 1px solid rgba(59,130,246,0.2); padding-top: 16px;">
+                <strong>💡 About XK TEAM</strong><br>
+                Kami adalah collective developer & security enthusiast yang fokus menciptakan tools injection, performance tweaks, dan cross‑platform solutions. Setiap produk melalui tahap security review sebelum rilis.
             </div>
         </div>
     </div>
 
     <div class="footer">
-        © 2025 XK TEAM • Innovation Labs • All modules for educational & personal use.
+        © 2025 XK TEAM — Innovation Labs. All modules for educational & authorized use.
     </div>
 </div>
 
 <script>
-    // Particle animation
-    function createParticles() {
-        const container = document.getElementById('particles');
-        const particleCount = 45;
-        for (let i = 0; i < particleCount; i++) {
-            let particle = document.createElement('div');
-            particle.classList.add('particle');
-            let size = Math.random() * 8 + 2;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDuration = Math.random() * 15 + 8 + 's';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particle.style.opacity = Math.random() * 0.5 + 0.2;
-            container.appendChild(particle);
-        }
-    }
-    createParticles();
+    // elegant tab switching
+    const tabs = document.querySelectorAll('.tab-btn');
+    const contents = {
+        welcome: document.getElementById('welcome-tab'),
+        support: document.getElementById('support-tab'),
+        channel: document.getElementById('channel-tab'),
+        credits: document.getElementById('credits-tab')
+    };
 
-    // Tab switching logic
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    function switchTab(tabId) {
-        tabContents.forEach(content => {
-            content.classList.remove('active');
+    function activateTab(tabId) {
+        Object.keys(contents).forEach(id => {
+            contents[id].classList.remove('active');
         });
-        const activeContent = document.getElementById(`tab-${tabId}`);
-        if (activeContent) activeContent.classList.add('active');
-        tabBtns.forEach(btn => {
+        if (contents[tabId]) contents[tabId].classList.add('active');
+        tabs.forEach(btn => {
             btn.classList.remove('active');
             if (btn.getAttribute('data-tab') === tabId) {
                 btn.classList.add('active');
@@ -429,14 +490,42 @@
         });
     }
 
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+    tabs.forEach(btn => {
+        btn.addEventListener('click', (e) => {
             const tabId = btn.getAttribute('data-tab');
-            switchTab(tabId);
+            activateTab(tabId);
         });
     });
 
-    // Optional: default active first tab already set via class
+    // optional floating particle effect
+    function createParticles() {
+        const body = document.body;
+        for (let i = 0; i < 32; i++) {
+            let span = document.createElement('div');
+            span.style.position = 'fixed';
+            span.style.width = '2px';
+            span.style.height = '2px';
+            span.style.background = 'rgba(59, 130, 246, 0.3)';
+            span.style.borderRadius = '50%';
+            span.style.bottom = '-10px';
+            span.style.left = Math.random() * 100 + '%';
+            span.style.animation = `floatUp ${Math.random() * 8 + 5}s linear infinite`;
+            span.style.pointerEvents = 'none';
+            span.style.zIndex = '-1';
+            document.body.appendChild(span);
+        }
+    }
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+    createParticles();
 </script>
 </body>
-                                       </html>
+</html>
