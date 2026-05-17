@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>XK TEAM · beyond limits</title>
-  <!-- Google Fonts + Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>XK TEAM — next‑gen tools</title>
+  <!-- Font Awesome 6 + Google Fonts (inter + space grotesk) -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      user-select: none; /* subtle, only to avoid accidental selections */
     }
 
     body {
-      background: #010101;
-      font-family: 'Syne', sans-serif;
+      background: #03050c;
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      color: #edf2fb;
       overflow-x: hidden;
-      color: #eef5ff;
+      min-height: 100vh;
     }
 
-    /* ---- 3D + canvas background (ultra wow) ---- */
+    /* ========== CANVAS BACKGROUND (ADVANCED PARTICLES + WAVES) ========== */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -31,82 +31,84 @@
       height: 100%;
       z-index: -2;
       pointer-events: none;
+      display: block;
     }
 
-    /* animated grain overlay */
-    .grain {
+    /* animated glowing orbs + grid overlay */
+    .glow-orb {
+      position: fixed;
+      width: 70vw;
+      height: 70vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 150, 255, 0.25), rgba(0, 30, 70, 0));
+      filter: blur(90px);
+      z-index: -1;
+      animation: slowDrift 28s infinite alternate ease-in-out;
+      pointer-events: none;
+    }
+    .orb2 {
+      width: 80vw;
+      height: 80vw;
+      background: radial-gradient(circle, rgba(100, 70, 220, 0.2), rgba(0, 0, 0, 0));
+      bottom: -40%;
+      right: -30%;
+      top: auto;
+      left: auto;
+      animation-duration: 36s;
+      animation-direction: alternate-reverse;
+    }
+    @keyframes slowDrift {
+      0% { transform: translate(0, 0) scale(0.9); opacity: 0.4; }
+      100% { transform: translate(8%, 5%) scale(1.2); opacity: 0.7; }
+    }
+
+    /* subtle grid noise (modern look) */
+    .grid-noise {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMTUiLz48L3N2Zz4=');
-      background-repeat: repeat;
-      opacity: 0.2;
+      background-image: repeating-linear-gradient(0deg, rgba(59,130,246,0.03) 1px, transparent 2px),
+                        repeating-linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 2px);
+      background-size: 36px 36px;
       pointer-events: none;
       z-index: -1;
-      mix-blend-mode: overlay;
-    }
-
-    /* glowing orb animations */
-    .orb-1, .orb-2 {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.5;
-      z-index: -1;
-      animation: floatOrb 18s infinite alternate ease-in-out;
-    }
-    .orb-1 {
-      width: 60vw;
-      height: 60vw;
-      background: radial-gradient(circle, rgba(59,130,246,0.35), rgba(0,20,80,0.1));
-      top: -20%;
-      left: -20%;
-    }
-    .orb-2 {
-      width: 70vw;
-      height: 70vw;
-      background: radial-gradient(circle, rgba(139,92,246,0.3), rgba(10,20,50,0));
-      bottom: -30%;
-      right: -20%;
-      animation-duration: 22s;
-      animation-direction: alternate-reverse;
-    }
-    @keyframes floatOrb {
-      0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-      100% { transform: translate(6%, 8%) scale(1.2); opacity: 0.7; }
     }
 
     .container {
-      max-width: 1250px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 2rem 1.8rem 4rem;
+      padding: 2rem 1.5rem 4rem;
       position: relative;
-      z-index: 4;
+      z-index: 5;
     }
 
-    /* header section */
+    /* ===== HEADER + LOGO ===== */
     .hero {
       text-align: center;
       margin-bottom: 3rem;
     }
-    .x-logo {
+    .xk-logo {
       width: 100px;
       height: 100px;
-      background: linear-gradient(145deg, #0B1120, #030614);
-      border-radius: 32px;
+      background: linear-gradient(135deg, #0b1222, #020617);
+      border-radius: 28px;   /* persegi dengan sudut melengkung, BUKAN LONJONG */
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.2rem;
-      border: 1px solid rgba(59,130,246,0.5);
-      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+      margin: 0 auto 1rem;
+      border: 1px solid rgba(59,130,246,0.6);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+      transition: transform 0.25s;
     }
-    .x-logo span {
+    .xk-logo:hover {
+      transform: scale(1.02);
+    }
+    .xk-logo span {
       font-size: 2.6rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #E0F2FE, #3B82F6);
+      background: linear-gradient(135deg, #e0f2fe, #3b82f6);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
@@ -115,287 +117,276 @@
       font-size: 3rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #FFFFFF, #A5B4FC);
+      background: linear-gradient(135deg, #ffffff, #a5b4fc);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
     }
     .hero p {
-      color: #94A3B8;
-      margin-top: 0.5rem;
+      color: #8ba3c7;
+      font-size: 0.9rem;
       font-weight: 400;
+      margin-top: 0.5rem;
     }
 
-    /* tabs */
-    .tabs-wrap {
+    /* ===== TABS ===== */
+    .tabs-row {
       display: flex;
       justify-content: center;
-      gap: 0.9rem;
+      gap: 1rem;
       flex-wrap: wrap;
-      margin-bottom: 2.8rem;
+      margin-bottom: 2.5rem;
     }
-    .tab-btn {
-      background: rgba(15, 25, 45, 0.45);
+    .tab {
+      background: rgba(15, 25, 45, 0.5);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(59,130,246,0.35);
       padding: 0.7rem 1.8rem;
       border-radius: 60px;
-      font-family: 'Syne', sans-serif;
       font-weight: 600;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
-      color: #D1DBF5;
-      letter-spacing: 0.3px;
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1);
+      color: #cbd5e1;
+      letter-spacing: -0.2px;
     }
-    .tab-btn i { margin-right: 8px; font-size: 0.9rem; }
-    .tab-btn.active {
-      background: linear-gradient(105deg, #1E3A8A, #3B82F6);
+    .tab i { margin-right: 8px; }
+    .tab.active {
+      background: linear-gradient(100deg, #1e3a8a, #3b82f6);
       border-color: transparent;
       color: white;
-      box-shadow: 0 8px 20px -8px #2563EB;
+      box-shadow: 0 6px 16px -6px #2563eb;
     }
-    .tab-btn:hover:not(.active) {
+    .tab:hover:not(.active) {
       background: rgba(59,130,246,0.2);
-      border-color: #3B82F6;
+      border-color: #3b82f6;
       transform: translateY(-2px);
     }
 
-    /* pane content */
+    /* ===== PANES (konten) ===== */
     .pane {
       display: none;
-      animation: fadeSlideUp 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+      animation: paneRise 0.55s cubic-bezier(0.2, 0.8, 0.3, 1);
     }
     .pane.active {
       display: block;
     }
-    @keyframes fadeSlideUp {
+    @keyframes paneRise {
       0% { opacity: 0; transform: translateY(24px); }
       100% { opacity: 1; transform: translateY(0); }
     }
 
     .glass-card {
-      background: rgba(10, 18, 28, 0.65);
+      background: rgba(10, 18, 28, 0.7);
       backdrop-filter: blur(18px);
       border-radius: 2rem;
       padding: 2rem;
-      border: 1px solid rgba(59,130,246,0.3);
-      transition: all 0.25s;
+      border: 1px solid rgba(59,130,246,0.35);
+      transition: transform 0.2s, border-color 0.2s;
     }
     .glass-card:hover {
       border-color: rgba(59,130,246,0.7);
-      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.3);
+      transform: translateY(-3px);
     }
 
-    .section-header {
+    .section-title {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.5rem;
     }
-    .section-header i {
+    .section-title i {
       font-size: 1.9rem;
-      background: linear-gradient(145deg, #60A5FA, #3B82F6);
+      background: linear-gradient(145deg, #60a5fa, #2563eb);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
     }
-    .section-header h2 {
+    .section-title h2 {
       font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: -0.3px;
     }
 
-    .desc {
-      color: #CBD5E1;
-      line-height: 1.5;
+    .desc-text {
+      color: #cbd5e1;
+      line-height: 1.55;
       font-size: 0.95rem;
     }
 
-    /* feature pills (modern) */
-    .feature-pills {
+    /* feature pills (modern glass) */
+    .features-list {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin: 1.8rem 0;
+      margin: 1.5rem 0;
     }
-    .pill-neon {
+    .pill {
       background: rgba(59,130,246,0.12);
-      border: 1px solid rgba(59,130,246,0.5);
-      border-radius: 50px;
+      border: 1px solid rgba(59,130,246,0.45);
+      border-radius: 60px;
       padding: 0.4rem 1.3rem;
       font-size: 0.8rem;
       font-weight: 500;
       backdrop-filter: blur(4px);
       transition: 0.2s;
     }
-    .pill-neon:hover {
+    .pill:hover {
       background: rgba(59,130,246,0.25);
-      border-color: #60A5FA;
-      transform: scale(1.02);
+      border-color: #60a5fa;
+      transform: translateY(-1px);
     }
 
     /* contact rows */
-    .contact-row {
+    .contact-item {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 0.9rem 0;
+      padding: 1rem 0;
       border-bottom: 1px solid rgba(59,130,246,0.2);
     }
     .contact-name {
       font-weight: 600;
-      min-width: 150px;
+      min-width: 160px;
     }
     .contact-number {
       font-family: monospace;
-      background: #0E1622;
-      padding: 5px 14px;
+      background: #0e1622;
+      padding: 6px 14px;
       border-radius: 40px;
       font-size: 0.85rem;
     }
     .contact-link {
-      color: #60A5FA;
+      color: #60a5fa;
       text-decoration: none;
       font-weight: 500;
-      transition: 0.2s;
     }
-    .contact-link:hover { text-decoration: underline; color: #A5D8FF; }
+    .contact-link:hover {
+      text-decoration: underline;
+    }
 
-    /* dev grid */
+    /* team grid */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.2rem;
       margin: 1.2rem 0;
     }
     .dev-card {
-      background: #0B111E;
-      border-radius: 1.6rem;
+      background: #0b111e;
+      border-radius: 1.5rem;
       padding: 1.2rem;
       text-align: center;
-      border: 1px solid rgba(59,130,246,0.25);
+      border: 1px solid rgba(59,130,246,0.3);
       transition: all 0.2s;
     }
     .dev-card:hover {
-      border-color: #3B82F6;
+      border-color: #3b82f6;
       background: #111827;
       transform: translateY(-5px);
     }
     .dev-name {
+      font-weight: 800;
       font-size: 1.1rem;
-      font-weight: 700;
     }
     .dev-role {
       font-size: 0.7rem;
-      color: #94A3B8;
-      margin-bottom: 8px;
+      color: #94a3b8;
+      margin: 5px 0;
     }
-    .wa-mini {
+    .wa-small {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #1E293B;
+      background: #1e293b;
       padding: 5px 14px;
-      border-radius: 30px;
+      border-radius: 40px;
       font-size: 0.7rem;
       text-decoration: none;
-      color: #BBE3FF;
+      color: #bbe3ff;
       margin-top: 8px;
     }
 
-    .channel-btn {
+    .channel-cta {
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: linear-gradient(100deg, #1E3A8A, #3B82F6);
-      padding: 12px 30px;
+      background: linear-gradient(100deg, #1e3a8a, #3b82f6);
+      padding: 12px 32px;
       border-radius: 60px;
       font-weight: 600;
       text-decoration: none;
       color: white;
       margin-top: 1rem;
-      transition: all 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .channel-btn:hover {
+    .channel-cta:hover {
       transform: scale(1.02);
-      box-shadow: 0 8px 24px -8px #2563EB;
+      box-shadow: 0 8px 24px -6px #1e3a8a;
     }
 
     .footer {
-      margin-top: 3.5rem;
       text-align: center;
+      margin-top: 3rem;
       font-size: 0.7rem;
-      color: #5A6F94;
-    }
-
-    /* floating tiny emoji */
-    .emoji-float {
-      position: fixed;
-      pointer-events: none;
-      font-size: 1.2rem;
-      z-index: 5;
-      opacity: 0.4;
-      animation: floatEmoji 18s infinite linear;
-    }
-    @keyframes floatEmoji {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-      20% { opacity: 0.5; }
-      80% { opacity: 0.5; }
-      100% { transform: translateY(-100vh) rotate(20deg); opacity: 0; }
+      color: #4f6a8f;
     }
 
     @media (max-width: 680px) {
       .container { padding: 1rem; }
       .hero h1 { font-size: 2rem; }
-      .section-header h2 { font-size: 1.2rem; }
-      .contact-row { flex-direction: column; align-items: start; gap: 8px; }
-      .tab-btn { padding: 0.5rem 1.2rem; font-size: 0.75rem; }
+      .section-title h2 { font-size: 1.2rem; }
+      .contact-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .tab { padding: 0.5rem 1rem; font-size: 0.8rem; }
+      .xk-logo { width: 80px; height: 80px; }
+      .xk-logo span { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
 <canvas id="bg-canvas"></canvas>
-<div class="grain"></div>
-<div class="orb-1"></div>
-<div class="orb-2"></div>
+<div class="glow-orb"></div>
+<div class="glow-orb orb2"></div>
+<div class="grid-noise"></div>
 
 <div class="container">
   <div class="hero">
-    <div class="x-logo"><span>XK</span></div>
+    <div class="xk-logo">
+      <span>XK</span>
+    </div>
     <h1>XK TEAM</h1>
     <p>precision · velocity · next‑gen tools</p>
   </div>
 
-  <div class="tabs-wrap">
-    <button class="tab-btn active" data-tab="welcome"><i class="fas fa-bolt"></i> welcome</button>
-    <button class="tab-btn" data-tab="support"><i class="fas fa-headset"></i> support</button>
-    <button class="tab-btn" data-tab="channel"><i class="fab fa-whatsapp"></i> channel</button>
-    <button class="tab-btn" data-tab="team"><i class="fas fa-users"></i> core team</button>
+  <div class="tabs-row">
+    <button class="tab active" data-tab="welcome"><i class="fas fa-bolt"></i> welcome</button>
+    <button class="tab" data-tab="support"><i class="fas fa-headset"></i> support</button>
+    <button class="tab" data-tab="channel"><i class="fab fa-whatsapp"></i> channel</button>
+    <button class="tab" data-tab="team"><i class="fas fa-crown"></i> core team</button>
   </div>
 
   <!-- WELCOME PANE -->
   <div class="pane active" id="pane-welcome">
     <div class="glass-card">
-      <div class="section-header">
+      <div class="section-title">
         <i class="fas fa-charging-station"></i>
-        <h2>where ambition meets execution ✦</h2>
+        <h2>next‑gen performance architecture</h2>
       </div>
-      <div class="desc">
+      <div class="desc-text">
         XK TEAM is a collective of engineers, designers & security researchers dedicated to high‑performance tools. We push boundaries — seamless UX, deep system integration, uncompromised reliability.
       </div>
-      <div class="feature-pills">
-        <span class="pill-neon">🎯 Boosting Aim</span>
-        <span class="pill-neon">⚡ Hyper Response</span>
-        <span class="pill-neon">🧠 Stability Core</span>
-        <span class="pill-neon">🌀 Precision Overlay</span>
-        <span class="pill-neon">📡 Low‑Latency Engine</span>
-        <span class="pill-neon">🔮 Sensor Fusion</span>
+      <div class="features-list">
+        <span class="pill">🎯 Boosting Aim</span>
+        <span class="pill">⚡ Hyper Response</span>
+        <span class="pill">🧠 Stability Core</span>
+        <span class="pill">🌀 Precision Overlay</span>
+        <span class="pill">📡 Low‑Latency Engine</span>
+        <span class="pill">🔮 Sensor Fusion</span>
       </div>
-      <div class="desc">
-        <i class="fas fa-gem" style="color:#60A5FA; margin-right: 6px;"></i> Ultra‑low latency, adaptive resource tuning & security‑first architecture — our tools are crafted for enthusiasts who demand the edge.
+      <div class="desc-text">
+        <i class="fas fa-gem" style="color:#60a5fa; margin-right: 6px;"></i> Ultra‑low latency, adaptive resource tuning & security‑first architecture — our tools are crafted for enthusiasts who demand the edge.
       </div>
     </div>
   </div>
@@ -403,36 +394,36 @@
   <!-- SUPPORT PANE -->
   <div class="pane" id="pane-support">
     <div class="glass-card">
-      <div class="section-header">
+      <div class="section-title">
         <i class="fas fa-life-ring"></i>
-        <h2>direct support ✉️</h2>
+        <h2>direct support</h2>
       </div>
-      <div class="contact-row">
+      <div class="contact-item">
         <span class="contact-name"><i class="fab fa-whatsapp"></i> Xyro (Owner / Support)</span>
         <span class="contact-number">+62 831-5141-3591</span>
         <a href="https://wa.me/6283151413591" class="contact-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat →</a>
       </div>
-      <div class="desc" style="margin-top: 18px;">
+      <div class="desc-text" style="margin-top: 16px;">
         <i class="fas fa-clock"></i> response within 24h (GMT+7) <br>
         technical questions, subscription issues, partnership inquiries.
       </div>
     </div>
   </div>
 
-  <!-- WHATSAPP CHANNEL PANE -->
+  <!-- CHANNEL PANE -->
   <div class="pane" id="pane-channel">
     <div class="glass-card" style="text-align: center;">
-      <div class="section-header" style="justify-content: center;">
+      <div class="section-title" style="justify-content: center;">
         <i class="fab fa-whatsapp"></i>
-        <h2>exclusive channel 💬</h2>
+        <h2>exclusive channel</h2>
       </div>
-      <div class="desc">
+      <div class="desc-text">
         join our WhatsApp channel for instant news, beta access, behind‑the‑scenes & early drops.
       </div>
-      <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="channel-btn" target="_blank">
+      <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="channel-cta" target="_blank">
         <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Join XK TEAM Channel
       </a>
-      <div class="desc" style="margin-top: 20px; font-size: 0.7rem;">
+      <div class="desc-text" style="margin-top: 20px; font-size: 0.7rem;">
         <code>https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21</code>
       </div>
     </div>
@@ -441,33 +432,33 @@
   <!-- CORE TEAM / CREDITS PANE -->
   <div class="pane" id="pane-team">
     <div class="glass-card">
-      <div class="section-header">
-        <i class="fas fa-crown"></i>
-        <h2>friends & architects ✨</h2>
+      <div class="section-title">
+        <i class="fas fa-users-viewfinder"></i>
+        <h2>friends & architects</h2>
       </div>
       <div class="team-grid">
         <div class="dev-card">
           <div class="dev-name">Xyro</div>
           <div class="dev-role">founder · lead architect</div>
-          <a href="https://wa.me/6283151413591" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
+          <a href="https://wa.me/6283151413591" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
         </div>
         <div class="dev-card">
           <div class="dev-name">Vanx</div>
           <div class="dev-role">experience designer</div>
-          <a href="https://wa.me/6285211522956" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
+          <a href="https://wa.me/6285211522956" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
         </div>
         <div class="dev-card">
           <div class="dev-name">Komalx</div>
           <div class="dev-role">core engineering</div>
-          <a href="https://wa.me/6281916624978" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
+          <a href="https://wa.me/6281916624978" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
         </div>
         <div class="dev-card">
           <div class="dev-name">NozzTr</div>
           <div class="dev-role">security & validation</div>
-          <a href="https://wa.me/6285691475916" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
+          <a href="https://wa.me/6285691475916" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
         </div>
       </div>
-      <div class="desc" style="border-top: 1px solid rgba(59,130,246,0.2); padding-top: 18px;">
+      <div class="desc-text" style="border-top: 1px solid rgba(59,130,246,0.2); padding-top: 18px;">
         <i class="fas fa-hand-peace"></i> remote team across timezones, driven by curiosity and craftsmanship. every release is audited before public rollout.
       </div>
     </div>
@@ -479,113 +470,127 @@
 </div>
 
 <script>
-  // ---- advanced canvas background (fluid particles + waves) ----
-  const canvas = document.getElementById('bg-canvas');
-  const ctxBg = canvas.getContext('2d');
-  let width, height;
-  let particles = [];
+  (function() {
+    // *************** CANVAS BACKGROUND: FLOW FIELD + GLOW PARTICLES (ADVANCED) ***************
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    let particles = [];
+    let time = 0;
 
-  function resizeCanvasBg() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-  }
+    function resizeCanvas() {
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w;
+      canvas.height = h;
+    }
 
-  function initParticles() {
-    const count = Math.min(130, Math.floor(width * 0.08));
-    particles = [];
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 2.2 + 0.8,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.2,
-        alpha: Math.random() * 0.4 + 0.1,
+    class FlowParticle {
+      constructor() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.size = Math.random() * 2.2 + 0.6;
+        this.speedX = 0;
+        this.speedY = 0;
+        this.angle = Math.random() * Math.PI * 2;
+        this.alpha = Math.random() * 0.5 + 0.1;
+        this.color = `rgba(59, 130, 246, ${this.alpha * 0.7})`;
+      }
+      update(noiseVal) {
+        // flow field based on sine/cosine + time
+        let angle = Math.sin(this.y * 0.006 + time) * 1.2 + Math.cos(this.x * 0.005 + time) * 1.2;
+        this.speedX = Math.cos(angle) * 0.45;
+        this.speedY = Math.sin(angle) * 0.45;
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < -30) this.x = w + 30;
+        if (this.x > w + 30) this.x = -30;
+        if (this.y < -30) this.y = h + 30;
+        if (this.y > h + 30) this.y = -30;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        // subtle glow
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = 'rgba(0, 150, 255, 0.3)';
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    function initParticles() {
+      const count = Math.min(140, Math.floor(w * 0.09));
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push(new FlowParticle());
+      }
+    }
+
+    function animateCanvas() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, w, h);
+      // dark gradient background
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#03050c');
+      grad.addColorStop(1, '#0b0e1a');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+      
+      time += 0.022;
+      for (let p of particles) {
+        p.update();
+        p.draw();
+      }
+      // additional floating larger glow points (sparse)
+      for (let i = 0; i < 18; i++) {
+        let fx = (Math.sin(time * 0.7 + i) * 0.3 + 0.5) * w;
+        let fy = (Math.cos(time * 0.5 + i * 1.2) * 0.3 + 0.5) * h;
+        ctx.beginPath();
+        ctx.arc(fx, fy, 3, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 180, 255, 0.08)`;
+        ctx.fill();
+      }
+      requestAnimationFrame(animateCanvas);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      initParticles();
+    });
+    resizeCanvas();
+    initParticles();
+    animateCanvas();
+
+    // *************** TABS SWITCH ***************
+    const tabs = document.querySelectorAll('.tab');
+    const panes = {
+      welcome: document.getElementById('pane-welcome'),
+      support: document.getElementById('pane-support'),
+      channel: document.getElementById('pane-channel'),
+      team: document.getElementById('pane-team')
+    };
+
+    function setActiveTab(tabId) {
+      Object.keys(panes).forEach(id => {
+        if (panes[id]) panes[id].classList.remove('active');
+      });
+      if (panes[tabId]) panes[tabId].classList.add('active');
+      tabs.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-tab') === tabId) btn.classList.add('active');
       });
     }
-  }
 
-  function drawBg() {
-    if (!ctxBg) return;
-    ctxBg.clearRect(0, 0, width, height);
-    // soft gradient overlay
-    const grad = ctxBg.createLinearGradient(0, 0, width, height);
-    grad.addColorStop(0, '#03050b');
-    grad.addColorStop(1, '#0a0c16');
-    ctxBg.fillStyle = grad;
-    ctxBg.fillRect(0, 0, width, height);
-    
-    // glowing particles
-    for (let p of particles) {
-      ctxBg.beginPath();
-      ctxBg.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctxBg.fillStyle = `rgba(59, 130, 246, ${p.alpha * 0.7})`;
-      ctxBg.fill();
-      p.x += p.speedX;
-      p.y += p.speedY;
-      if (p.x < -20) p.x = width + 20;
-      if (p.x > width + 20) p.x = -20;
-      if (p.y < -20) p.y = height + 20;
-      if (p.y > height + 20) p.y = -20;
-    }
-    requestAnimationFrame(drawBg);
-  }
-
-  window.addEventListener('resize', () => {
-    resizeCanvasBg();
-    initParticles();
-  });
-  resizeCanvasBg();
-  initParticles();
-  drawBg();
-
-  // ---- floating emoji generation (soft animated) ----
-  function createFloatingEmoji() {
-    const emojis = ['✨','⚡','🎯','🌀','💎','🔥','🧠','📡','⚙️','💫'];
-    const em = document.createElement('div');
-    em.className = 'emoji-float';
-    em.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-    const size = Math.random() * 18 + 12;
-    em.style.fontSize = size + 'px';
-    em.style.left = Math.random() * 100 + '%';
-    em.style.bottom = '-30px';
-    em.style.animationDuration = Math.random() * 14 + 12 + 's';
-    em.style.animationDelay = Math.random() * 5 + 's';
-    em.style.opacity = Math.random() * 0.4 + 0.2;
-    document.body.appendChild(em);
-    setTimeout(() => { em.remove(); }, 18000);
-  }
-  setInterval(createFloatingEmoji, 4000);
-  for(let i=0;i<8;i++) setTimeout(createFloatingEmoji, i*600);
-
-  // ---- tab switching logic ----
-  const tabs = document.querySelectorAll('.tab-btn');
-  const panes = {
-    welcome: document.getElementById('pane-welcome'),
-    support: document.getElementById('pane-support'),
-    channel: document.getElementById('pane-channel'),
-    team: document.getElementById('pane-team'),
-  };
-
-  function activateTab(tabId) {
-    Object.keys(panes).forEach(id => {
-      panes[id].classList.remove('active');
-    });
-    if (panes[tabId]) panes[tabId].classList.add('active');
     tabs.forEach(btn => {
-      btn.classList.remove('active');
-      if (btn.getAttribute('data-tab') === tabId) btn.classList.add('active');
+      btn.addEventListener('click', (e) => {
+        const tab = btn.getAttribute('data-tab');
+        setActiveTab(tab);
+      });
     });
-  }
-
-  tabs.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const tab = btn.getAttribute('data-tab');
-      activateTab(tab);
-    });
-  });
+  })();
 </script>
 </body>
 </html>
