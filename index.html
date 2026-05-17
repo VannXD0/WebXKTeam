@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>XK TEAM | Kinetic Core</title>
-  <!-- Google Fonts: Inter & Space Grotesk -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>XK TEAM — beyond the edge</title>
+  <!-- Google Fonts: Inter + Plus Jakarta Sans (clean & authoritative) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      user-select: none; /* prevents accidental highlight but keeps UX smooth */
     }
 
     body {
       background: #010101;
-      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      color: #edf2fb;
       overflow-x: hidden;
-      color: #eef5ff;
+      min-height: 100vh;
     }
 
-    /* ========= 1. ADVANCED CANVAS BACKGROUND (FLOW FIELD + PARTICLES) ========= */
+    /* === PREMIUM CANVAS BACKGROUND (kinetic particles + flow) === */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -31,51 +31,40 @@
       height: 100%;
       z-index: -2;
       pointer-events: none;
-      display: block;
     }
 
-    /* glowing organic orbs ( parallax / drift ) */
-    .orb-1, .orb-2, .orb-3 {
+    /* refined orbs */
+    .orb-1, .orb-2 {
       position: fixed;
       border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.5;
+      filter: blur(110px);
+      opacity: 0.45;
       z-index: -1;
       pointer-events: none;
-      animation: orbFloat 26s infinite alternate ease-in-out;
+      animation: driftOrb 28s infinite alternate ease-in-out;
     }
     .orb-1 {
       width: 70vw;
       height: 70vw;
-      background: radial-gradient(circle, rgba(0, 180, 255, 0.3), rgba(0, 30, 80, 0));
+      background: radial-gradient(circle, rgba(0, 160, 255, 0.35), rgba(0, 30, 80, 0));
       top: -20%;
       left: -20%;
     }
     .orb-2 {
       width: 80vw;
       height: 80vw;
-      background: radial-gradient(circle, rgba(100, 80, 255, 0.2), rgba(0, 0, 0, 0));
+      background: radial-gradient(circle, rgba(100, 90, 255, 0.25), rgba(0, 0, 0, 0));
       bottom: -40%;
       right: -30%;
-      animation-duration: 34s;
+      animation-duration: 36s;
       animation-direction: alternate-reverse;
     }
-    .orb-3 {
-      width: 50vw;
-      height: 50vw;
-      background: radial-gradient(circle, rgba(0, 200, 200, 0.2), transparent);
-      top: 40%;
-      left: 60%;
-      animation-duration: 22s;
-      opacity: 0.4;
-    }
-    @keyframes orbFloat {
-      0% { transform: translate(0, 0) scale(0.9); opacity: 0.35; }
-      100% { transform: translate(6%, 8%) scale(1.2); opacity: 0.65; }
+    @keyframes driftOrb {
+      0% { transform: translate(0, 0) scale(0.9); opacity: 0.4; }
+      100% { transform: translate(7%, 5%) scale(1.2); opacity: 0.7; }
     }
 
-    /* cyber-grid (low opacity) */
-    .grid-mist {
+    .grid-subtle {
       position: fixed;
       top: 0;
       left: 0;
@@ -83,20 +72,20 @@
       height: 100%;
       background-image: repeating-linear-gradient(0deg, rgba(59,130,246,0.04) 1px, transparent 2px),
                         repeating-linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 2px);
-      background-size: 44px 44px;
+      background-size: 48px 48px;
       pointer-events: none;
       z-index: -1;
     }
 
     .container {
-      max-width: 1300px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
+      padding: 2rem 1.8rem 4rem;
       position: relative;
       z-index: 5;
     }
 
-    /* ---------- HEADER + LOGO (persegi elegant) ---------- */
+    /* ===== HEADER + ANIMATED LOGO ===== */
     .hero {
       text-align: center;
       margin-bottom: 3rem;
@@ -105,14 +94,14 @@
       width: 100px;
       height: 100px;
       background: linear-gradient(145deg, #0b1222, #020617);
-      border-radius: 28px;
+      border-radius: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 1rem;
-      border: 1px solid rgba(59,130,246,0.55);
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.6);
-      transition: all 0.25s;
+      border: 1px solid rgba(59,130,246,0.6);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.25s;
     }
     .xk-logo span {
       font-size: 2.6rem;
@@ -122,7 +111,7 @@
       -webkit-background-clip: text;
       color: transparent;
     }
-    .hero h1 {
+    .animated-title {
       font-size: 3rem;
       font-weight: 800;
       letter-spacing: -0.02em;
@@ -130,58 +119,42 @@
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
+      margin-top: 0.2rem;
+      display: inline-block;
+      animation: titleBreathing 2.8s infinite ease-in-out;
     }
-    .hero p {
+    @keyframes titleBreathing {
+      0% { opacity: 0.92; transform: scale(1); letter-spacing: -0.02em; }
+      50% { opacity: 1; transform: scale(1.01); letter-spacing: -0.01em; text-shadow: 0 0 6px rgba(59,130,246,0.3); }
+      100% { opacity: 0.92; transform: scale(1); letter-spacing: -0.02em; }
+    }
+    .hero-sub {
       color: #8BA3C7;
+      font-weight: 500;
       font-size: 0.9rem;
-      font-weight: 400;
       margin-top: 0.5rem;
     }
 
-    /* ========= ANIMATED TEXT HERO (GLITCH + FLOAT) ========= */
-    .animated-headline {
-      font-size: 1.2rem;
-      letter-spacing: 2px;
-      font-weight: 500;
-      text-transform: uppercase;
-      background: linear-gradient(120deg, #A5B4FC, #60A5FA);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      display: inline-block;
-      animation: glitchFlicker 2.8s infinite alternate, textBreath 3s infinite ease;
-      margin-top: 12px;
-    }
-    @keyframes glitchFlicker {
-      0% { opacity: 0.9; text-shadow: -1px 0px 0px #00ccff, 1px 0px 0px #ff00cc; letter-spacing: 2px; }
-      25% { text-shadow: 1px -1px 0px #00ccff, -2px 1px 0px #3b82f6; letter-spacing: 2.5px; }
-      50% { opacity: 1; text-shadow: -2px 1px 0px #00ccff, 1px -1px 0px #ff69b4; letter-spacing: 2.2px; }
-      100% { opacity: 1; text-shadow: 0px 0px 8px #3b82f6; letter-spacing: 2.2px; }
-    }
-    @keyframes textBreath {
-      0% { transform: scale(1); opacity: 0.8; }
-      100% { transform: scale(1.02); opacity: 1; }
-    }
-
-    /* ========= TABS - MODERN ========= */
+    /* ===== TABS (modular) ===== */
     .tabs-row {
       display: flex;
       justify-content: center;
-      gap: 0.9rem;
+      gap: 1rem;
       flex-wrap: wrap;
-      margin-bottom: 2.6rem;
+      margin-bottom: 2.8rem;
     }
     .tab {
-      background: rgba(15, 25, 45, 0.5);
+      background: rgba(15, 25, 45, 0.55);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(59,130,246,0.4);
-      padding: 0.7rem 1.8rem;
+      padding: 0.75rem 1.9rem;
       border-radius: 60px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: 0.25s cubic-bezier(0.2, 0.9, 0.4, 1);
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1);
       color: #CBD5E1;
+      font-family: 'Inter', sans-serif;
     }
     .tab i { margin-right: 8px; }
     .tab.active {
@@ -191,34 +164,32 @@
       box-shadow: 0 8px 20px -8px #2563EB;
     }
     .tab:hover:not(.active) {
-      background: rgba(59,130,246,0.22);
+      background: rgba(59,130,246,0.25);
       border-color: #60A5FA;
       transform: translateY(-2px);
     }
 
-    /* ========= PANELS ========= */
+    /* PANELS */
     .pane {
       display: none;
-      animation: paneRise 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+      animation: paneRise 0.55s cubic-bezier(0.2, 0.8, 0.3, 1);
     }
-    .pane.active {
-      display: block;
-    }
+    .pane.active { display: block; }
     @keyframes paneRise {
-      0% { opacity: 0; transform: translateY(26px); }
+      0% { opacity: 0; transform: translateY(28px); }
       100% { opacity: 1; transform: translateY(0); }
     }
 
     .glass-card {
-      background: rgba(8, 15, 24, 0.7);
+      background: rgba(10, 18, 28, 0.7);
       backdrop-filter: blur(18px);
       border-radius: 2rem;
       padding: 2rem;
       border: 1px solid rgba(59,130,246,0.35);
-      transition: all 0.25s;
+      transition: transform 0.2s ease, border-color 0.2s;
     }
     .glass-card:hover {
-      border-color: rgba(59,130,246,0.75);
+      border-color: rgba(59,130,246,0.7);
       transform: translateY(-3px);
     }
 
@@ -229,48 +200,48 @@
       margin-bottom: 1.5rem;
     }
     .section-title i {
-      font-size: 1.9rem;
+      font-size: 2rem;
       background: linear-gradient(145deg, #60A5FA, #2563EB);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
     }
     .section-title h2 {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: 700;
       letter-spacing: -0.3px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
-
     .desc-text {
       color: #CBD5E1;
-      line-height: 1.55;
-      font-size: 0.95rem;
+      line-height: 1.6;
+      font-size: 0.98rem;
+      margin-bottom: 1.2rem;
     }
-
-    /* FEATURE PILLS (moving hover) */
-    .features-list {
+    .feature-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin: 1.5rem 0;
+      gap: 14px;
+      margin: 1.8rem 0;
     }
-    .pill {
+    .pill-premium {
       background: rgba(59,130,246,0.12);
       border: 1px solid rgba(59,130,246,0.45);
       border-radius: 60px;
-      padding: 0.4rem 1.3rem;
+      padding: 0.5rem 1.5rem;
       font-size: 0.8rem;
-      font-weight: 500;
-      transition: all 0.2s;
+      font-weight: 600;
+      transition: 0.2s;
       cursor: default;
+      backdrop-filter: blur(4px);
     }
-    .pill:hover {
-      background: rgba(59,130,246,0.28);
+    .pill-premium:hover {
+      background: rgba(59,130,246,0.22);
       transform: translateY(-2px);
       border-color: #60A5FA;
     }
 
-    /* CONTACT */
+    /* contact rows */
     .contact-item {
       display: flex;
       flex-wrap: wrap;
@@ -280,8 +251,9 @@
       border-bottom: 1px solid rgba(59,130,246,0.2);
     }
     .contact-name {
-      font-weight: 600;
-      min-width: 160px;
+      font-weight: 700;
+      min-width: 180px;
+      font-size: 1rem;
     }
     .contact-number {
       font-family: monospace;
@@ -289,29 +261,27 @@
       padding: 6px 14px;
       border-radius: 40px;
       font-size: 0.85rem;
+      letter-spacing: 0.3px;
     }
     .contact-link {
       color: #60A5FA;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       transition: 0.2s;
     }
-    .contact-link:hover {
-      text-decoration: underline;
-      color: #A5D8FF;
-    }
+    .contact-link:hover { text-decoration: underline; color: #A5D8FF; }
 
-    /* TEAM GRID */
+    /* team grid */
     .team-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.3rem;
       margin: 1.2rem 0;
     }
     .dev-card {
       background: #0B111E;
       border-radius: 1.5rem;
-      padding: 1.2rem;
+      padding: 1.3rem;
       text-align: center;
       border: 1px solid rgba(59,130,246,0.3);
       transition: 0.25s;
@@ -319,17 +289,10 @@
     .dev-card:hover {
       border-color: #3B82F6;
       background: #111827;
-      transform: translateY(-5px);
+      transform: translateY(-6px);
     }
-    .dev-name {
-      font-weight: 800;
-      font-size: 1.1rem;
-    }
-    .dev-role {
-      font-size: 0.7rem;
-      color: #94A3B8;
-      margin: 5px 0;
-    }
+    .dev-name { font-weight: 800; font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .dev-role { font-size: 0.7rem; color: #94A3B8; margin-bottom: 10px; }
     .wa-small {
       display: inline-flex;
       align-items: center;
@@ -340,21 +303,21 @@
       font-size: 0.7rem;
       text-decoration: none;
       color: #BBE3FF;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
-    /* CHANNEL BUTTON */
     .channel-cta {
       display: inline-flex;
       align-items: center;
       gap: 12px;
       background: linear-gradient(100deg, #1E3A8A, #3B82F6);
-      padding: 12px 32px;
+      padding: 12px 36px;
       border-radius: 60px;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 0.95rem;
       text-decoration: none;
       color: white;
-      transition: all 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
       margin-top: 1rem;
     }
     .channel-cta:hover {
@@ -367,13 +330,12 @@
       margin-top: 3rem;
       font-size: 0.7rem;
       color: #4F6A8F;
+      font-weight: 400;
     }
-
-    /* small screen */
     @media (max-width: 680px) {
       .container { padding: 1rem; }
-      .hero h1 { font-size: 2rem; }
-      .section-title h2 { font-size: 1.2rem; }
+      .animated-title { font-size: 2rem; }
+      .section-title h2 { font-size: 1.4rem; }
       .contact-item { flex-direction: column; align-items: flex-start; gap: 8px; }
       .tab { padding: 0.5rem 1rem; font-size: 0.8rem; }
       .xk-logo { width: 80px; height: 80px; }
@@ -386,47 +348,53 @@
 <canvas id="bg-canvas"></canvas>
 <div class="orb-1"></div>
 <div class="orb-2"></div>
-<div class="orb-3"></div>
-<div class="grid-mist"></div>
+<div class="grid-subtle"></div>
 
 <div class="container">
   <div class="hero">
-    <div class="xk-logo">
-      <span>XK</span>
-    </div>
-    <h1>XK TEAM</h1>
-    <div class="animated-headline">
-      <i class="fas fa-bolt"></i>  CYBER KINETIC //  CORE ACCESS
-    </div>
+    <div class="xk-logo"><span>XK</span></div>
+    <div class="animated-title">XK TEAM</div>
+    <div class="hero-sub">pushing boundaries · engineering the future</div>
   </div>
 
   <div class="tabs-row">
-    <button class="tab active" data-tab="welcome"><i class="fas fa-bolt"></i> welcome</button>
+    <button class="tab active" data-tab="welcome"><i class="fas fa-compass"></i> welcome</button>
     <button class="tab" data-tab="support"><i class="fas fa-headset"></i> support</button>
     <button class="tab" data-tab="channel"><i class="fab fa-whatsapp"></i> channel</button>
     <button class="tab" data-tab="team"><i class="fas fa-crown"></i> core team</button>
   </div>
 
-  <!-- WELCOME PANE -->
+  <!-- WELCOME PANE (EXTRA YAPPING + FEATURES) -->
   <div class="pane active" id="pane-welcome">
     <div class="glass-card">
       <div class="section-title">
-        <i class="fas fa-charging-station"></i>
-        <h2>next‑gen performance architecture</h2>
+        <i class="fas fa-brain"></i>
+        <h2>philosophy & execution</h2>
       </div>
       <div class="desc-text">
-        XK TEAM is a collective of engineers, designers & security researchers dedicated to high‑performance tools. We push boundaries — seamless UX, deep system integration, uncompromised reliability.
-      </div>
-      <div class="features-list">
-        <span class="pill">🎯 Boosting Aim</span>
-        <span class="pill">⚡ Hyper Response</span>
-        <span class="pill">🧠 Stability Core</span>
-        <span class="pill">🌀 Precision Overlay</span>
-        <span class="pill">📡 Low‑Latency Engine</span>
-        <span class="pill">🔮 Sensor Fusion</span>
+        XK TEAM emerged from a simple belief: performance tools should feel like an extension of instinct. We are a collective of engineers, security researchers, and UX architects obsessing over latency, stability, and precision. Every line of code, every pixel, is audited for minimal overhead and maximum impact.
       </div>
       <div class="desc-text">
-        <i class="fas fa-gem" style="color:#60a5fa; margin-right: 6px;"></i> Ultra‑low latency, adaptive resource tuning & security‑first architecture — our tools are crafted for enthusiasts who demand the edge.
+        Our ecosystem merges deep system integration (Shizuku, ARM64 assembly tuning) with realtime telemetry. We don't just build features — we sculpt responsiveness. The result: a suite that adapts to your hardware, not the opposite.
+      </div>
+      <div class="feature-grid">
+        <span class="pill-premium">⚡ Boosting Aim (sub‑frame)</span>
+        <span class="pill-premium">🌀 Hyper Response profile</span>
+        <span class="pill-premium">🧠 Stability Core v2</span>
+        <span class="pill-premium">🎯 Precision Overlay (zero‑lag)</span>
+        <span class="pill-premium">📡 Low‑Latency Engine</span>
+        <span class="pill-premium">🔮 Neural prediction</span>
+        <span class="pill-premium">🖥️ Adaptive Sync Render</span>
+        <span class="pill-premium">⚙️ Dynamic resource governor</span>
+      </div>
+      <div class="desc-text">
+        <i class="fas fa-microchip" style="color:#60A5FA; margin-right: 8px;"></i> <strong>Next‑gen tooling:</strong> Smart DPI, Touch Accelerator, GPU/CPU boost, and real‑time crosshair overlay are just the beginning. Our modular architecture allows rapid iteration without breaking compatibility.
+      </div>
+      <div class="desc-text" style="margin-top: 16px;">
+        🔹 Over 2000+ active users across 8 tiers (Basic → Privet) <br>
+        🔹 Firebase backend + granular access control <br>
+        🔹 Weekly edge updates & community-driven roadmap <br>
+        🔹 full transparency, no telemetry, zero bloat.
       </div>
     </div>
   </div>
@@ -436,35 +404,38 @@
     <div class="glass-card">
       <div class="section-title">
         <i class="fas fa-life-ring"></i>
-        <h2>direct support</h2>
+        <h2>direct support channel</h2>
+      </div>
+      <div class="desc-text">
+        We believe in fast, human support. For technical issues, tier upgrades, or partnership inquiries, our support desk is available 6 days a week.
       </div>
       <div class="contact-item">
         <span class="contact-name"><i class="fab fa-whatsapp"></i> Xyro (Owner / Support)</span>
         <span class="contact-number">+62 831-5141-3591</span>
-        <a href="https://wa.me/6283151413591" class="contact-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat →</a>
+        <a href="https://wa.me/6283151413591" class="contact-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat now →</a>
       </div>
-      <div class="desc-text" style="margin-top: 16px;">
-        <i class="fas fa-clock"></i> response within 24h (GMT+7) <br>
-        technical questions, subscription issues, partnership inquiries.
+      <div class="desc-text" style="margin-top: 18px;">
+        ⏱️ response within 24 hours (GMT+7) <br>
+        📌 general inquiries, bug reports, license issues.
       </div>
     </div>
   </div>
 
-  <!-- CHANNEL PANE -->
+  <!-- CHANNEL PANE (NO RAW URL SHOWN) -->
   <div class="pane" id="pane-channel">
     <div class="glass-card" style="text-align: center;">
       <div class="section-title" style="justify-content: center;">
         <i class="fab fa-whatsapp"></i>
-        <h2>exclusive channel</h2>
+        <h2>official broadcast</h2>
       </div>
       <div class="desc-text">
-        join our WhatsApp channel for instant news, beta access, behind‑the‑scenes & early drops.
+        Join our private WhatsApp channel to receive early patch notes, beta releases, and direct announcements from the team. No spam, only signal.
       </div>
       <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="channel-cta" target="_blank">
-        <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Join XK TEAM Channel
+        <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Join channel →
       </a>
-      <div class="desc-text" style="margin-top: 20px; font-size: 0.7rem;">
-        <code>https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21</code>
+      <div class="desc-text" style="margin-top: 18px; font-size: 0.75rem;">
+        <i class="fas fa-lock"></i> encrypted & members only
       </div>
     </div>
   </div>
@@ -476,124 +447,118 @@
         <i class="fas fa-users-viewfinder"></i>
         <h2>friends & architects</h2>
       </div>
+      <div class="desc-text">
+        The minds behind XK TOOLS: a lean, cross‑functional team that values craftsmanship over bureaucracy. Each member brings a unique discipline.
+      </div>
       <div class="team-grid">
         <div class="dev-card">
           <div class="dev-name">Xyro</div>
           <div class="dev-role">founder · lead architect</div>
-          <a href="https://wa.me/6283151413591" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
+          <a href="https://wa.me/6283151413591" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
         </div>
         <div class="dev-card">
           <div class="dev-name">Vanx</div>
           <div class="dev-role">experience designer</div>
-          <a href="https://wa.me/6285211522956" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
+          <a href="https://wa.me/6285211522956" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
         </div>
         <div class="dev-card">
           <div class="dev-name">Komalx</div>
           <div class="dev-role">core engineering</div>
-          <a href="https://wa.me/6281916624978" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
+          <a href="https://wa.me/6281916624978" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
         </div>
         <div class="dev-card">
           <div class="dev-name">NozzTr</div>
           <div class="dev-role">security & validation</div>
-          <a href="https://wa.me/6285691475916" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
+          <a href="https://wa.me/6285691475916" class="wa-small" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
         </div>
       </div>
       <div class="desc-text" style="border-top: 1px solid rgba(59,130,246,0.2); padding-top: 18px;">
-        <i class="fas fa-hand-peace"></i> remote team across timezones, driven by curiosity and craftsmanship. every release is audited before public rollout.
+        <i class="fas fa-hand-peace"></i> distributed across timezones, driven by curiosity. Every public release undergoes 3‑layer validation before rollout.
       </div>
     </div>
   </div>
 
   <div class="footer">
-    © 2025 XK TEAM — designed with intent. all systems kinetic.
+    © 2025 XK TEAM — intelligence through iteration. all systems nominal.
   </div>
 </div>
 
 <script>
   (function() {
-    // ------------------------------
-    //  ADVANCED CANVAS (FLOW FIELD + GLOW PARTICLES)
-    // ------------------------------
+    // --- ADVANCED BACKGROUND CANVAS (flow field + radiant particles) ---
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
-    let w, h;
+    let width, height;
     let particles = [];
     let time = 0;
 
     function resizeCanvas() {
-      w = window.innerWidth;
-      h = window.innerHeight;
-      canvas.width = w;
-      canvas.height = h;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
     }
 
-    class FlowParticle {
+    class KineticParticle {
       constructor() {
-        this.x = Math.random() * w;
-        this.y = Math.random() * h;
-        this.size = Math.random() * 2.3 + 0.7;
-        this.speedX = 0;
-        this.speedY = 0;
-        this.alpha = Math.random() * 0.55 + 0.1;
-        this.color = `rgba(59, 130, 246, ${this.alpha * 0.8})`;
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2.4 + 0.8;
+        this.alpha = Math.random() * 0.55 + 0.12;
+        this.color = `rgba(59, 130, 246, ${this.alpha * 0.85})`;
       }
       update() {
-        // flow field based on coherent noise (sine/cosine pattern)
-        let angle = Math.sin(this.y * 0.007 + time) * 1.4 + Math.cos(this.x * 0.006 + time) * 1.4;
-        this.speedX = Math.cos(angle) * 0.47;
-        this.speedY = Math.sin(angle) * 0.47;
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < -40) this.x = w + 40;
-        if (this.x > w + 40) this.x = -40;
-        if (this.y < -40) this.y = h + 40;
-        if (this.y > h + 40) this.y = -40;
+        // dynamic flow field (organic)
+        let angle = Math.sin(this.y * 0.007 + time) * 1.5 + Math.cos(this.x * 0.006 + time * 1.1) * 1.3;
+        let speedX = Math.cos(angle) * 0.52;
+        let speedY = Math.sin(angle) * 0.52;
+        this.x += speedX;
+        this.y += speedY;
+        if (this.x < -40) this.x = width + 40;
+        if (this.x > width + 40) this.x = -40;
+        if (this.y < -40) this.y = height + 40;
+        if (this.y > height + 40) this.y = -40;
       }
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
         ctx.fill();
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = 'rgba(0, 170, 255, 0.4)';
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = 'rgba(0, 160, 255, 0.4)';
         ctx.fill();
         ctx.shadowBlur = 0;
       }
     }
 
     function initParticles() {
-      const count = Math.min(150, Math.floor(w * 0.1));
+      const count = Math.min(160, Math.floor(width * 0.1));
       particles = [];
-      for (let i = 0; i < count; i++) {
-        particles.push(new FlowParticle());
-      }
+      for (let i = 0; i < count; i++) particles.push(new KineticParticle());
     }
 
-    function animateCanvas() {
+    function animateBg() {
       if (!ctx) return;
-      ctx.clearRect(0, 0, w, h);
-      // dark gradient
-      const grad = ctx.createLinearGradient(0, 0, w, h);
+      ctx.clearRect(0, 0, width, height);
+      // dark gradient base
+      const grad = ctx.createLinearGradient(0, 0, width, height);
       grad.addColorStop(0, '#03050c');
-      grad.addColorStop(1, '#0b0e1a');
+      grad.addColorStop(1, '#0a0e18');
       ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, w, h);
-      
-      time += 0.022;
-      for (let p of particles) {
-        p.update();
-        p.draw();
-      }
-      // floating ghost aurora
-      for (let i = 0; i < 14; i++) {
-        let fx = (Math.sin(time * 0.6 + i) * 0.35 + 0.5) * w;
-        let fy = (Math.cos(time * 0.5 + i * 1.1) * 0.35 + 0.5) * h;
+      ctx.fillRect(0, 0, width, height);
+      time += 0.019;
+      for (let p of particles) p.update();
+      for (let p of particles) p.draw();
+      // additional floating aura
+      for (let i = 0; i < 16; i++) {
+        let fx = (Math.sin(time * 0.6 + i) * 0.35 + 0.5) * width;
+        let fy = (Math.cos(time * 0.55 + i * 1.2) * 0.35 + 0.5) * height;
         ctx.beginPath();
-        ctx.arc(fx, fy, 4.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 160, 255, 0.05)`;
+        ctx.arc(fx, fy, 4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 150, 230, 0.045)`;
         ctx.fill();
       }
-      requestAnimationFrame(animateCanvas);
+      requestAnimationFrame(animateBg);
     }
 
     window.addEventListener('resize', () => {
@@ -602,9 +567,9 @@
     });
     resizeCanvas();
     initParticles();
-    animateCanvas();
+    animateBg();
 
-    // ---------- TAB INTERACTION ----------
+    // --- TAB SWITCHING ---
     const tabs = document.querySelectorAll('.tab');
     const panes = {
       welcome: document.getElementById('pane-welcome'),
@@ -612,7 +577,6 @@
       channel: document.getElementById('pane-channel'),
       team: document.getElementById('pane-team')
     };
-
     function setActiveTab(tabId) {
       Object.keys(panes).forEach(id => {
         if (panes[id]) panes[id].classList.remove('active');
@@ -623,9 +587,8 @@
         if (btn.getAttribute('data-tab') === tabId) btn.classList.add('active');
       });
     }
-
     tabs.forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', () => {
         const tab = btn.getAttribute('data-tab');
         setActiveTab(tab);
       });
