@@ -1,531 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>XK TEAM — Next‑gen Tools</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>XK TEAM · pulse of innovation</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            background: #0A0C15;
-            font-family: 'Inter', sans-serif;
-            color: #F0F4FF;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
+    body {
+      background-color: #03050b;
+      background-image: radial-gradient(circle at 15% 30%, rgba(20, 50, 100, 0.2) 0%, #03050b 90%);
+      font-family: 'Space Grotesk', sans-serif;
+      color: #EDF2F8;
+      line-height: 1.5;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-        /* animated gradient orb */
-        .orb-bg {
-            position: fixed;
-            top: -20%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            background: radial-gradient(circle at 30% 40%, rgba(0, 180, 255, 0.15), rgba(15, 25, 55, 0.9));
-            filter: blur(80px);
-            z-index: -2;
-            animation: drift 22s infinite alternate ease-in-out;
-        }
+    /* canvas background animation */
+    #canvas-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
 
-        @keyframes drift {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
-            100% { transform: translate(3%, 2%) scale(1.05); opacity: 1; }
-        }
+    /* animated gradient orb */
+    .gradient-orb {
+      position: fixed;
+      width: 70vw;
+      height: 70vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.25), rgba(15,35,70,0.1));
+      filter: blur(90px);
+      top: -30%;
+      right: -20%;
+      z-index: -1;
+      animation: drift 28s infinite alternate ease-in-out;
+    }
 
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-radial-gradient(circle at 20% 30%, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.02) 2px, transparent 3px);
-            pointer-events: none;
-            z-index: -1;
-        }
+    .gradient-orb2 {
+      left: -20%;
+      bottom: -30%;
+      top: auto;
+      background: radial-gradient(circle, rgba(168,85,247,0.2), rgba(0,0,0,0));
+      filter: blur(110px);
+      animation: drift 35s infinite alternate-reverse;
+    }
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 4rem;
-            position: relative;
-            z-index: 2;
-        }
+    @keyframes drift {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+      100% { transform: translate(5%, 8%) scale(1.2); opacity: 0.8; }
+    }
 
-        /* header */
-        .logo-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      position: relative;
+      z-index: 3;
+    }
 
-        .x-shield {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(145deg, #1E2A5E, #0F172A);
-            border-radius: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            box-shadow: 0 15px 30px -10px rgba(0, 100, 255, 0.3);
-            border: 1px solid rgba(59,130,246,0.4);
-        }
+    /* header */
+    .hero {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
 
-        .x-shield span {
-            font-weight: 800;
-            font-size: 2rem;
-            background: linear-gradient(135deg, #E0F2FE, #3B82F6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+    .logo-circle {
+      width: 90px;
+      height: 90px;
+      background: linear-gradient(145deg, #0F172A, #020617);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      border: 1px solid rgba(59,130,246,0.5);
+      box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
+    }
 
-        .logo-area h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #FFFFFF, #94A3F8);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+    .logo-circle span {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #E0F2FE, #3B82F6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
 
-        .logo-area p {
-            color: #7E8BAE;
-            font-size: 0.85rem;
-            margin-top: 6px;
-        }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #FFFFFF, #94A3F8);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
 
-        /* tab navigation */
-        .tabs {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.8rem;
-            margin-bottom: 2.5rem;
-        }
+    .hero p {
+      color: #94A3B8;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
 
-        .tab-btn {
-            background: rgba(15, 25, 45, 0.55);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(59,130,246,0.3);
-            padding: 0.7rem 1.5rem;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.25s;
-            color: #B9C7E3;
-            letter-spacing: -0.2px;
-        }
+    /* glass tabs */
+    .tabs-container {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
 
-        .tab-btn i {
-            margin-right: 8px;
-        }
+    .glass-tab {
+      background: rgba(15, 25, 45, 0.5);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 0.65rem 1.6rem;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      color: #CBD5E1;
+      letter-spacing: -0.2px;
+    }
 
-        .tab-btn.active {
-            background: linear-gradient(100deg, #1E3A8A, #3B82F6);
-            border-color: transparent;
-            color: white;
-            box-shadow: 0 4px 14px rgba(59,130,246,0.4);
-        }
+    .glass-tab i {
+      margin-right: 8px;
+    }
 
-        .tab-btn:hover:not(.active) {
-            background: rgba(59,130,246,0.2);
-            border-color: #3B82F6;
-        }
+    .glass-tab.active {
+      background: linear-gradient(100deg, #1E3A8A, #3B82F6);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 6px 14px rgba(59,130,246,0.35);
+    }
 
-        /* cards */
-        .card {
-            background: rgba(12, 20, 35, 0.65);
-            backdrop-filter: blur(16px);
-            border-radius: 2rem;
-            padding: 1.8rem;
-            border: 1px solid rgba(59,130,246,0.3);
-            transition: transform 0.2s ease, box-shadow 0.2s;
-        }
+    .glass-tab:hover:not(.active) {
+      background: rgba(59,130,246,0.2);
+      border-color: #3B82F6;
+    }
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
-            border-color: rgba(59,130,246,0.6);
-        }
+    /* content cards */
+    .content-pane {
+      display: none;
+      animation: fadeSlide 0.5s cubic-bezier(0.2, 0.9, 0.4, 1);
+    }
 
-        .section-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #90CDF4;
-        }
+    .content-pane.active {
+      display: block;
+    }
 
-        .section-title i {
-            font-size: 1.6rem;
-            background: linear-gradient(145deg, #60A5FA, #3B82F6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .description {
-            color: #CCD6F0;
-            line-height: 1.6;
-            margin-bottom: 1.2rem;
-        }
+    .card-gloss {
+      background: rgba(12, 20, 32, 0.65);
+      backdrop-filter: blur(16px);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      transition: transform 0.2s ease;
+    }
 
-        .feature-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.7rem;
-            margin: 1.2rem 0;
-        }
+    .card-gloss:hover {
+      transform: translateY(-3px);
+      border-color: rgba(59, 130, 246, 0.5);
+    }
 
-        .feature-tag {
-            background: rgba(59,130,246,0.15);
-            border-radius: 40px;
-            padding: 0.3rem 1rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            border: 1px solid rgba(59,130,246,0.3);
-        }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
 
-        /* contact list */
-        .contact-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(59,130,246,0.2);
-        }
-        .contact-name {
-            font-weight: 600;
-            min-width: 140px;
-        }
-        .contact-number {
-            font-family: monospace;
-            background: #0B0F18;
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            letter-spacing: 0.3px;
-        }
-        .contact-link {
-            color: #60A5FA;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-        .contact-link:hover {
-            color: #A5D8FF;
-            text-decoration: underline;
-        }
+    .section-header i {
+      font-size: 1.8rem;
+      background: linear-gradient(145deg, #60A5FA, #2563EB);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
 
-        /* dev grid */
-        .dev-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 1.2rem;
-            margin: 1.5rem 0;
-        }
+    .section-header h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
 
-        .dev-card {
-            background: #0B0F1A;
-            border-radius: 1.5rem;
-            padding: 1.2rem;
-            text-align: center;
-            border: 1px solid rgba(59,130,246,0.25);
-            transition: all 0.2s;
-        }
+    .desc-text {
+      color: #CBD5E1;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
 
-        .dev-card:hover {
-            border-color: #3B82F6;
-            background: #0E1422;
-        }
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 1.5rem 0;
+    }
 
-        .dev-name {
-            font-size: 1.1rem;
-            font-weight: 800;
-            margin-bottom: 4px;
-        }
+    .pill {
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.4);
+      border-radius: 40px;
+      padding: 0.3rem 1.2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
 
-        .dev-role {
-            font-size: 0.7rem;
-            color: #8BA3C7;
-            margin-bottom: 8px;
-        }
+    /* contact rows */
+    .contact-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(59,130,246,0.2);
+    }
 
-        .wa-mini {
-            margin-top: 8px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #1E293B;
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            text-decoration: none;
-            color: #E0F2FE;
-        }
+    .contact-name {
+      font-weight: 600;
+      min-width: 140px;
+    }
 
-        .channel-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(95deg, #1E3A8A, #2563EB);
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-weight: 700;
-            text-decoration: none;
-            color: white;
-            margin-top: 16px;
-            transition: 0.2s;
-        }
+    .contact-number {
+      font-family: monospace;
+      background: #0A0F1A;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+    }
 
-        .channel-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px -5px #1E3A8A;
-        }
+    .contact-link {
+      color: #60A5FA;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-        .footer {
-            margin-top: 4rem;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #5A6E8F;
-        }
+    .contact-link:hover {
+      text-decoration: underline;
+    }
 
-        .tab-content {
-            display: none;
-            animation: fadeUp 0.4s cubic-bezier(0.2, 0.9, 0.4, 1);
-        }
+    /* dev grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
 
-        .tab-content.active {
-            display: block;
-        }
+    .dev-card {
+      background: #0E1422;
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+      text-align: center;
+      border: 1px solid rgba(59,130,246,0.25);
+      transition: 0.2s;
+    }
 
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .dev-card:hover {
+      border-color: #3B82F6;
+      background: #121A2C;
+    }
 
-        @media (max-width: 680px) {
-            .container {
-                padding: 1rem;
-            }
-            .contact-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-            .tab-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-            .logo-area h1 {
-                font-size: 1.7rem;
-            }
-        }
-    </style>
+    .dev-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .dev-role {
+      font-size: 0.7rem;
+      color: #8BA3C7;
+      margin-bottom: 8px;
+    }
+
+    .wa-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1E293B;
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      text-decoration: none;
+      color: #BBE3FF;
+      margin-top: 8px;
+    }
+
+    .channel-pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(100deg, #1E3A8A, #3B82F6);
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+      color: white;
+      margin-top: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .channel-pulse:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px -6px #2563EB;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.7rem;
+      color: #4F6A8F;
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        padding: 1rem;
+      }
+      .contact-line {
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
+      }
+      .glass-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="orb-bg"></div>
-<div class="noise"></div>
+
+<canvas id="canvas-bg"></canvas>
+<div class="gradient-orb"></div>
+<div class="gradient-orb gradient-orb2"></div>
 
 <div class="container">
-    <div class="logo-area">
-        <div class="x-shield"><span>XK</span></div>
-        <h1>XK TEAM</h1>
-        <p>next‑gen · performance · security</p>
-    </div>
+  <div class="hero">
+    <div class="logo-circle"><span>XK</span></div>
+    <h1>XK TEAM</h1>
+    <p>precision · innovation · performance</p>
+  </div>
 
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="welcome"><i class="fas fa-compass"></i> Welcome</button>
-        <button class="tab-btn" data-tab="support"><i class="fas fa-headset"></i> Support</button>
-        <button class="tab-btn" data-tab="channel"><i class="fab fa-whatsapp"></i> Channel</button>
-        <button class="tab-btn" data-tab="credits"><i class="fas fa-users"></i> Core team</button>
-    </div>
+  <div class="tabs-container">
+    <button class="glass-tab active" data-tab="welcome"><i class="fas fa-waveform"></i> Welcome</button>
+    <button class="glass-tab" data-tab="support"><i class="fas fa-headset"></i> Support</button>
+    <button class="glass-tab" data-tab="channel"><i class="fab fa-whatsapp"></i> Channel</button>
+    <button class="glass-tab" data-tab="team"><i class="fas fa-crown"></i> Core team</button>
+  </div>
 
-    <!-- WELCOME TAB -->
-    <div class="tab-content active" id="welcome-tab">
-        <div class="card">
-            <div class="section-title"><i class="fas fa-bolt"></i> XK TOOLS · ecosystem</div>
-            <div class="description">
-                <p><strong>XK TEAM</strong> menghadirkan aplikasi optimasi & injection suite untuk Android dengan integrasi Shizuku, crosshair overlay, dan fitur tier premium. Dibangun dengan arsitektur modern, realtime database, dan fokus pada stabilitas.</p>
-                <div class="feature-list">
-                    <span class="feature-tag">⚡ Smart DPI</span>
-                    <span class="feature-tag">🎯 Aim stability</span>
-                    <span class="feature-tag">🖱️ Touch responsive</span>
-                    <span class="feature-tag">📈 GPU/CPU Boost</span>
-                    <span class="feature-tag">🎨 Custom crosshair</span>
-                    <span class="feature-tag">🛡️ Shizuku native</span>
-                    <span class="feature-tag">📊 realtime monitor</span>
-                </div>
-                <p>Multi‑tier: Basic, Ultra, Vixo, Delta, Sonic, Lunar, Athena, Privet — setiap tier membuka fitur eksklusif. Dashboard terintegrasi Firebase + admin panel lengkap.</p>
-            </div>
-            <div style="margin-top: 20px;">
-                <div class="section-title"><i class="fas fa-code-branch"></i> Modules & technology</div>
-                <div class="description">
-                    ✔️ Smart DPI + resolution scaling <br>
-                    ✔️ Easy drag & aim stability ( 3% / 6% ) <br>
-                    ✔️ GPU/CPU Boost (performance profile) <br>
-                    ✔️ Crosshair overlay (color, shape, size, on‑the‑fly) <br>
-                    ✔️ Remote shell execution (Shizuku based) <br>
-                    ✔️ Secure login via Firebase + session storage
-                </div>
-            </div>
+  <!-- Welcome Pane -->
+  <div class="content-pane active" id="pane-welcome">
+    <div class="card-gloss">
+      <div class="section-header">
+        <i class="fas fa-bolt"></i>
+        <h2>where ambition meets execution</h2>
+      </div>
+      <div class="desc-text">
+        XK TEAM is a collective of engineers, designers & security researchers dedicated to crafting high‑performance tools for the next generation. We push boundaries — seamless UX, deep system integration, and uncompromised reliability.
+      </div>
+      <div class="pill-list">
+        <span class="pill">Boosting Aim</span>
+        <span class="pill">Hyper Response</span>
+        <span class="pill">Stability Core</span>
+        <span class="pill">Precision Overlay</span>
+        <span class="pill">Low‑Latency Engine</span>
+        <span class="pill">Sensor Fusion</span>
+      </div>
+      <div class="desc-text" style="margin-top: 16px;">
+        🔹 From <strong>Ultra‑low latency</strong> to <strong>smart resource tuning</strong> — we build tools that adapt. Every release goes through rigorous internal audits before public rollout.
+      </div>
+    </div>
+  </div>
+
+  <!-- Support Pane -->
+  <div class="content-pane" id="pane-support">
+    <div class="card-gloss">
+      <div class="section-header">
+        <i class="fas fa-life-ring"></i>
+        <h2>Direct support</h2>
+      </div>
+      <div class="contact-line">
+        <span class="contact-name"><i class="fab fa-whatsapp"></i> Xyro (Owner / Support)</span>
+        <span class="contact-number">+62 831-5141-3591</span>
+        <a href="https://wa.me/6283151413591" class="contact-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat →</a>
+      </div>
+      <div class="desc-text" style="margin-top: 20px;">
+        <i class="fas fa-clock"></i> Response within 24 hours (GMT+7) <br>
+        For technical questions, subscription issues, or partnership inquiries.
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Channel Pane -->
+  <div class="content-pane" id="pane-channel">
+    <div class="card-gloss" style="text-align: center;">
+      <div class="section-header" style="justify-content: center;">
+        <i class="fab fa-whatsapp"></i>
+        <h2>Exclusive channel</h2>
+      </div>
+      <div class="desc-text">
+        Join our WhatsApp channel to receive instant news, beta access, and behind‑the‑scenes updates.
+      </div>
+      <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="channel-pulse" target="_blank">
+        <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Join XK TEAM Channel
+      </a>
+      <div class="desc-text" style="margin-top: 20px; font-size: 0.7rem;">
+        <code>https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team / Credits Pane -->
+  <div class="content-pane" id="pane-team">
+    <div class="card-gloss">
+      <div class="section-header">
+        <i class="fas fa-users-viewfinder"></i>
+        <h2>Friends & architects</h2>
+      </div>
+      <div class="team-grid">
+        <div class="dev-card">
+          <div class="dev-name">Xyro</div>
+          <div class="dev-role">founder · lead architect</div>
+          <a href="https://wa.me/6283151413591" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
         </div>
-    </div>
-
-    <!-- SUPPORT TAB -->
-    <div class="tab-content" id="support-tab">
-        <div class="card">
-            <div class="section-title"><i class="fas fa-life-ring"></i> Contact support</div>
-            <div class="contact-row">
-                <span class="contact-name"><i class="fab fa-whatsapp"></i> Xyro (Owner / Support)</span>
-                <span class="contact-number">+62 831-5141-3591</span>
-                <a href="https://wa.me/6283151413591" class="contact-link" target="_blank"><i class="fab fa-whatsapp"></i> Chat now</a>
-            </div>
-            <div class="description" style="margin-top: 16px;">
-                <i class="fas fa-clock"></i> Response within 24h · 09:00 – 21:00 WIB <br>
-                Untuk pertanyaan teknis, upgrade tier, atau laporan bug, hubungi via WhatsApp.
-            </div>
+        <div class="dev-card">
+          <div class="dev-name">Vanx</div>
+          <div class="dev-role">experience designer</div>
+          <a href="https://wa.me/6285211522956" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
         </div>
-    </div>
-
-    <!-- WHATSAPP CHANNEL TAB -->
-    <div class="tab-content" id="channel-tab">
-        <div class="card" style="text-align: center;">
-            <div class="section-title" style="justify-content: center;"><i class="fab fa-whatsapp"></i> Official channel</div>
-            <div class="description">
-                Dapatkan update fitur, rilis module baru, tips, dan announcement langsung dari tim XK TEAM.
-            </div>
-            <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="channel-btn" target="_blank">
-                <i class="fab fa-whatsapp" style="font-size: 1.3rem;"></i> Join WhatsApp Channel
-            </a>
-            <div style="margin-top: 20px; font-size: 0.7rem; word-break: break-all;">
-                <code>https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21</code>
-            </div>
+        <div class="dev-card">
+          <div class="dev-name">Komalx</div>
+          <div class="dev-role">core engineering</div>
+          <a href="https://wa.me/6281916624978" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
         </div>
-    </div>
-
-    <!-- CREDITS / TEAM TAB -->
-    <div class="tab-content" id="credits-tab">
-        <div class="card">
-            <div class="section-title"><i class="fas fa-users"></i> Friend & Developer</div>
-            <div class="dev-grid">
-                <div class="dev-card">
-                    <div class="dev-name">Xyro</div>
-                    <div class="dev-role">Founder · Lead Dev</div>
-                    <div class="dev-desc">Backend, Firebase, system architecture</div>
-                    <a href="https://wa.me/6283151413591" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
-                </div>
-                <div class="dev-card">
-                    <div class="dev-name">Vanx</div>
-                    <div class="dev-role">UI/UX Designer</div>
-                    <div class="dev-desc">Dashboard, visual identity, animations</div>
-                    <a href="https://wa.me/6285211522956" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
-                </div>
-                <div class="dev-card">
-                    <div class="dev-name">Komalx</div>
-                    <div class="dev-role">Code Infrastructure</div>
-                    <div class="dev-desc">Shizuku integration, native shell, modules</div>
-                    <a href="https://wa.me/6281916624978" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
-                </div>
-                <div class="dev-card">
-                    <div class="dev-name">NozzTr</div>
-                    <div class="dev-role">Security Checker</div>
-                    <div class="dev-desc">Penetration test, encryption, safety</div>
-                    <a href="https://wa.me/6285691475916" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
-                </div>
-            </div>
-            <div class="description" style="margin-top: 16px; border-top: 1px solid rgba(59,130,246,0.2); padding-top: 16px;">
-                <strong>💡 About XK TEAM</strong><br>
-                Kami adalah collective developer & security enthusiast yang fokus menciptakan tools injection, performance tweaks, dan cross‑platform solutions. Setiap produk melalui tahap security review sebelum rilis.
-            </div>
+        <div class="dev-card">
+          <div class="dev-name">NozzTr</div>
+          <div class="dev-role">security & validation</div>
+          <a href="https://wa.me/6285691475916" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> Contact</a>
         </div>
+      </div>
+      <div class="desc-text" style="border-top: 1px solid rgba(59,130,246,0.2); padding-top: 18px; margin-top: 8px;">
+        <i class="fas fa-handshake"></i> We are a remote team spanning multiple timezones, driven by curiosity and craftsmanship. Every tool we release is built with transparency and security at its core.
+      </div>
     </div>
+  </div>
 
-    <div class="footer">
-        © 2025 XK TEAM — Innovation Labs. All modules for educational & authorized use.
-    </div>
+  <div class="footer">
+    © 2025 XK TEAM — designed with intent. All systems operational.
+  </div>
 </div>
 
 <script>
-    // elegant tab switching
-    const tabs = document.querySelectorAll('.tab-btn');
-    const contents = {
-        welcome: document.getElementById('welcome-tab'),
-        support: document.getElementById('support-tab'),
-        channel: document.getElementById('channel-tab'),
-        credits: document.getElementById('credits-tab')
-    };
+  // ---- Canvas particles & interactive flow ----
+  const canvas = document.getElementById('canvas-bg');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let particles = [];
 
-    function activateTab(tabId) {
-        Object.keys(contents).forEach(id => {
-            contents[id].classList.remove('active');
-        });
-        if (contents[tabId]) contents[tabId].classList.add('active');
-        tabs.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-tab') === tabId) {
-                btn.classList.add('active');
-            }
-        });
+  function resizeCanvas() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  }
+
+  function initParticles() {
+    particles = [];
+    const particleCount = Math.min(80, Math.floor(width * 0.08));
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 2.5 + 1,
+        alpha: Math.random() * 0.4 + 0.1,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.2,
+      });
     }
+  }
 
-    tabs.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const tabId = btn.getAttribute('data-tab');
-            activateTab(tabId);
-        });
+  function drawParticles() {
+    if (!ctx) return;
+    ctx.clearRect(0, 0, width, height);
+    for (let p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(59, 130, 246, ${p.alpha * 0.6})`;
+      ctx.fill();
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < -20) p.x = width + 20;
+      if (p.x > width + 20) p.x = -20;
+      if (p.y < -20) p.y = height + 20;
+      if (p.y > height + 20) p.y = -20;
+    }
+    requestAnimationFrame(drawParticles);
+  }
+
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    initParticles();
+  });
+  resizeCanvas();
+  initParticles();
+  drawParticles();
+
+  // ---- Tab switching ----
+  const tabButtons = document.querySelectorAll('.glass-tab');
+  const panes = {
+    welcome: document.getElementById('pane-welcome'),
+    support: document.getElementById('pane-support'),
+    channel: document.getElementById('pane-channel'),
+    team: document.getElementById('pane-team'),
+  };
+
+  function setActiveTab(tabId) {
+    Object.values(panes).forEach(pane => pane.classList.remove('active'));
+    if (panes[tabId]) panes[tabId].classList.add('active');
+    tabButtons.forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.getAttribute('data-tab') === tabId) {
+        btn.classList.add('active');
+      }
     });
+  }
 
-    // optional floating particle effect
-    function createParticles() {
-        const body = document.body;
-        for (let i = 0; i < 32; i++) {
-            let span = document.createElement('div');
-            span.style.position = 'fixed';
-            span.style.width = '2px';
-            span.style.height = '2px';
-            span.style.background = 'rgba(59, 130, 246, 0.3)';
-            span.style.borderRadius = '50%';
-            span.style.bottom = '-10px';
-            span.style.left = Math.random() * 100 + '%';
-            span.style.animation = `floatUp ${Math.random() * 8 + 5}s linear infinite`;
-            span.style.pointerEvents = 'none';
-            span.style.zIndex = '-1';
-            document.body.appendChild(span);
-        }
-    }
-    const styleSheet = document.createElement("style");
-    styleSheet.textContent = `
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(0.8); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.6; }
-            100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
-        }
-    `;
-    document.head.appendChild(styleSheet);
-    createParticles();
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.getAttribute('data-tab');
+      setActiveTab(tab);
+    });
+  });
+
+  // optional: tiny hover effect for cards (just for micro interactions)
+  const cards = document.querySelectorAll('.card-gloss');
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', (e) => {
+      card.style.transition = 'transform 0.2s, border-color 0.1s';
+    });
+  });
 </script>
 </body>
 </html>
