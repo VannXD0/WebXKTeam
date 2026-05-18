@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>XK TEAM — next‑gen performance</title>
-  <!-- fonts: clean, modern, professional -->
+  <title>XK TEAM — official website</title>
+  <!-- Google Fonts: Inter (clean, modern) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (icons untuk pemanis) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -14,14 +16,14 @@
     }
 
     body {
-      background: #02040c;
+      background: #01040e;
       font-family: 'Inter', sans-serif;
-      color: #edf2ff;
-      overflow-x: hidden;
+      color: #eef5ff;
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
-    /* ========== ENHANCED CANVAS BACKGROUND (thick flow + particles) ========== */
+    /* CANVAS BACKGROUND — enhanced thick particles + flow field */
     #canvas-bg {
       position: fixed;
       top: 0;
@@ -32,54 +34,54 @@
       pointer-events: none;
     }
 
-    /* extra depth orbs (still subtle but richer) */
-    .orb-deep {
+    /* Deep orbs (glow) */
+    .ambient-orb {
       position: fixed;
-      width: 70vw;
-      height: 70vw;
+      width: 75vw;
+      height: 75vw;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 120, 255, 0.25), rgba(0, 20, 60, 0));
-      filter: blur(110px);
+      background: radial-gradient(circle, rgba(0, 130, 255, 0.25), rgba(0, 20, 60, 0));
+      filter: blur(120px);
       z-index: -1;
       pointer-events: none;
-      animation: driftGlow 24s infinite alternate ease-in-out;
+      animation: orbFloat 26s infinite alternate ease-in-out;
     }
-    .orb-deep-2 {
-      width: 80vw;
-      height: 80vw;
+    .ambient-orb-2 {
+      width: 85vw;
+      height: 85vw;
       background: radial-gradient(circle, rgba(90, 70, 220, 0.2), transparent);
       bottom: -30%;
-      right: -20%;
+      right: -25%;
       top: auto;
       left: auto;
-      animation-duration: 32s;
+      animation-duration: 34s;
       animation-direction: alternate-reverse;
     }
-    @keyframes driftGlow {
+    @keyframes orbFloat {
       0% { transform: translate(0, 0) scale(0.9); opacity: 0.4; }
-      100% { transform: translate(7%, 8%) scale(1.2); opacity: 0.75; }
+      100% { transform: translate(6%, 8%) scale(1.2); opacity: 0.7; }
     }
 
-    .grid-sophisticated {
+    .grid-subtle {
       position: fixed;
       inset: 0;
       background-image: 
-        repeating-linear-gradient(0deg, rgba(59,130,246,0.05) 1px, transparent 2px),
-        repeating-linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 2px);
-      background-size: 38px 38px;
+        repeating-linear-gradient(0deg, rgba(59,130,246,0.06) 1px, transparent 2px),
+        repeating-linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 2px);
+      background-size: 42px 42px;
       pointer-events: none;
       z-index: -1;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
       padding: 2rem 1.8rem 4rem;
       position: relative;
       z-index: 3;
     }
 
-    /* ========== HEADER + ANIMATED LETTERS (separate letters animation) ========== */
+    /* ========= HEADER ========= */
     .hero {
       text-align: center;
       margin-bottom: 3rem;
@@ -87,14 +89,15 @@
     .xk-logo {
       width: 100px;
       height: 100px;
-      background: linear-gradient(145deg, #0a1122, #010308);
-      border-radius: 30px;
+      background: linear-gradient(145deg, #0b1222, #010308);
+      border-radius: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 1rem;
       border: 1px solid rgba(59,130,246,0.6);
       box-shadow: 0 20px 35px -10px rgba(0,0,0,0.5);
+      transition: 0.2s;
     }
     .xk-logo span {
       font-size: 2.6rem;
@@ -105,15 +108,16 @@
       color: transparent;
     }
 
+    /* animated letters */
     .animated-title {
       margin: 0.8rem 0 0.2rem;
-      font-size: 3rem;
+      font-size: 3.2rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 0.2rem;
+      gap: 0.15rem;
     }
     .letter {
       display: inline-block;
@@ -121,38 +125,46 @@
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      animation: letterFloat 3s infinite ease alternate;
-      transform-origin: center;
+      animation: letterGlide 3.2s infinite ease alternate;
       will-change: transform;
     }
-    /* each letter slight variation delay */
     .letter:nth-child(1) { animation-delay: 0.0s; }
-    .letter:nth-child(2) { animation-delay: 0.08s; }
-    .letter:nth-child(3) { animation-delay: 0.16s; }
-    .letter:nth-child(4) { animation-delay: 0.24s; }
-    .letter:nth-child(5) { animation-delay: 0.32s; }
-    .letter:nth-child(6) { animation-delay: 0.40s; }
-    .letter:nth-child(7) { animation-delay: 0.48s; }
-    .letter:nth-child(8) { animation-delay: 0.56s; }
-    @keyframes letterFloat {
-      0% { transform: translateY(0px) rotate(0deg); text-shadow: 0 0 0px rgba(59,130,246,0); }
-      100% { transform: translateY(-3px) rotate(0.5deg); text-shadow: 0 0 8px rgba(59,130,246,0.3); }
+    .letter:nth-child(2) { animation-delay: 0.07s; }
+    .letter:nth-child(3) { animation-delay: 0.14s; }
+    .letter:nth-child(4) { animation-delay: 0.21s; }
+    .letter:nth-child(5) { animation-delay: 0.28s; }
+    .letter:nth-child(6) { animation-delay: 0.35s; }
+    .letter:nth-child(7) { animation-delay: 0.42s; }
+    @keyframes letterGlide {
+      0% { transform: translateY(0px) scale(1); text-shadow: 0 0 0 rgba(59,130,246,0); }
+      100% { transform: translateY(-4px) scale(1.01); text-shadow: 0 0 9px rgba(59,130,246,0.35); }
     }
 
+    .official-sub {
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      background: rgba(59,130,246,0.25);
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      margin-top: 8px;
+      color: #bbd7ff;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
     .hero-tagline {
       color: #8ba3c7;
+      margin-top: 0.6rem;
       font-size: 0.9rem;
-      margin-top: 0.3rem;
-      font-weight: 400;
     }
 
-    /* TABS – clean & elevated */
-    .tabs-container {
+    /* tabs */
+    .tabs-row {
       display: flex;
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-bottom: 2.8rem;
+      margin-bottom: 2.6rem;
     }
     .tab {
       background: rgba(15, 25, 45, 0.55);
@@ -163,108 +175,107 @@
       font-weight: 600;
       font-size: 0.9rem;
       cursor: pointer;
-      transition: 0.25s;
+      transition: 0.2s;
       color: #cbd5e1;
-      font-family: 'Inter', sans-serif;
     }
     .tab.active {
       background: linear-gradient(100deg, #1e3a8a, #3b82f6);
       border-color: transparent;
       color: white;
-      box-shadow: 0 6px 16px -8px #2563eb;
+      box-shadow: 0 6px 14px -6px #2563eb;
     }
     .tab:hover:not(.active) {
       background: rgba(59,130,246,0.22);
-      border-color: #60a5fa;
       transform: translateY(-2px);
     }
 
-    /* PANELS */
+    /* panels */
     .panel {
       display: none;
-      animation: rise 0.55s cubic-bezier(0.2,0.9,0.4,1);
+      animation: panelFade 0.5s cubic-bezier(0.2,0.9,0.4,1);
     }
-    .panel.active {
-      display: block;
-    }
-    @keyframes rise {
-      0% { opacity: 0; transform: translateY(20px); }
+    .panel.active { display: block; }
+    @keyframes panelFade {
+      0% { opacity: 0; transform: translateY(18px); }
       100% { opacity: 1; transform: translateY(0); }
     }
 
     .glass-card {
       background: rgba(8, 15, 24, 0.75);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(18px);
       border-radius: 2rem;
       padding: 2rem;
       border: 1px solid rgba(59,130,246,0.35);
-      transition: transform 0.2s, border-color 0.2s;
+      transition: 0.2s;
     }
     .glass-card:hover {
       border-color: rgba(59,130,246,0.7);
       transform: translateY(-3px);
     }
 
-    .section-head {
+    .section-header {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 1.2rem;
     }
-    .section-head i {
+    .section-header i {
       font-size: 1.8rem;
       background: linear-gradient(145deg, #60a5fa, #2563eb);
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
     }
-    .section-head h2 {
+    .section-header h2 {
       font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: -0.3px;
     }
 
-    .desc {
+    .desc-bilingual {
       color: #cbd5e1;
-      line-height: 1.6;
       font-size: 0.95rem;
-      margin-bottom: 1.2rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .divider-light {
+      height: 1px;
+      background: rgba(59,130,246,0.2);
+      margin: 1rem 0;
     }
 
-    .feature-grid {
+    .feature-pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin: 1.5rem 0;
+      gap: 10px;
+      margin: 1.2rem 0;
     }
     .pill {
       background: rgba(59,130,246,0.1);
       border: 1px solid rgba(59,130,246,0.4);
       border-radius: 60px;
-      padding: 0.4rem 1.3rem;
+      padding: 0.35rem 1.2rem;
       font-size: 0.75rem;
       font-weight: 500;
-      letter-spacing: 0.2px;
     }
 
-    /* contact row */
     .contact-line {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
+      padding: 0.9rem 0;
       border-bottom: 1px solid rgba(59,130,246,0.2);
     }
     .contact-label {
       font-weight: 600;
-      min-width: 160px;
+      min-width: 170px;
     }
     .contact-number {
-      font-family: monospace;
       background: #0c1220;
       padding: 5px 14px;
       border-radius: 40px;
+      font-family: monospace;
       font-size: 0.85rem;
     }
     .contact-link {
@@ -272,14 +283,12 @@
       text-decoration: none;
       font-weight: 500;
     }
-    .contact-link:hover { text-decoration: underline; }
 
-    /* team grid */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.2rem;
-      margin: 1.2rem 0;
+      margin: 1rem 0;
     }
     .team-card {
       background: #0b111e;
@@ -287,12 +296,10 @@
       padding: 1.2rem;
       text-align: center;
       border: 1px solid rgba(59,130,246,0.3);
-      transition: 0.2s;
     }
     .team-card:hover {
       border-color: #3b82f6;
       background: #111827;
-      transform: translateY(-4px);
     }
     .team-name {
       font-weight: 800;
@@ -303,7 +310,7 @@
       color: #94a3b8;
       margin: 5px 0;
     }
-    .wa-btn {
+    .wa-mini {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -316,7 +323,7 @@
       margin-top: 6px;
     }
 
-    .channel-action {
+    .channel-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -326,40 +333,39 @@
       font-weight: 700;
       text-decoration: none;
       color: white;
-      margin-top: 1rem;
       transition: 0.2s;
+      margin-top: 0.8rem;
     }
-    .channel-action:hover {
+    .channel-btn:hover {
       transform: scale(1.02);
-      box-shadow: 0 8px 20px -6px #1e3a8a;
+      box-shadow: 0 8px 18px -6px #1e3a8a;
     }
 
-    .footer-note {
+    .footer {
       margin-top: 3rem;
       text-align: center;
       font-size: 0.7rem;
       color: #5a6f94;
-      border-top: 1px solid rgba(59,130,246,0.15);
+      border-top: 1px solid rgba(59,130,246,0.2);
       padding-top: 1.2rem;
     }
 
     @media (max-width: 680px) {
       .container { padding: 1rem; }
       .animated-title { font-size: 2rem; }
-      .section-head h2 { font-size: 1.3rem; }
-      .contact-line { flex-direction: column; align-items: start; gap: 8px; }
+      .section-header h2 { font-size: 1.3rem; }
+      .contact-line { flex-direction: column; align-items: flex-start; gap: 8px; }
       .tab { padding: 0.45rem 1rem; font-size: 0.8rem; }
       .xk-logo { width: 80px; height: 80px; }
-      .xk-logo span { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
 <canvas id="canvas-bg"></canvas>
-<div class="orb-deep"></div>
-<div class="orb-deep orb-deep-2"></div>
-<div class="grid-sophisticated"></div>
+<div class="ambient-orb"></div>
+<div class="ambient-orb ambient-orb-2"></div>
+<div class="grid-subtle"></div>
 
 <div class="container">
   <div class="hero">
@@ -367,42 +373,46 @@
     <div class="animated-title">
       <span class="letter">X</span><span class="letter">K</span><span class="letter">&nbsp;</span><span class="letter">T</span><span class="letter">E</span><span class="letter">A</span><span class="letter">M</span>
     </div>
-    <div class="hero-tagline">precision engineering · low latency · zero compromise</div>
+    <div class="official-sub"><i class="fas fa-globe"></i> OFFICIAL WEBSITE XK TEAM</div>
+    <div class="hero-tagline">precision engineering · low latency · zero telemetry</div>
   </div>
 
-  <div class="tabs-container">
+  <div class="tabs-row">
     <button class="tab active" data-tab="welcome">welcome</button>
     <button class="tab" data-tab="support">support</button>
     <button class="tab" data-tab="channel">channel</button>
     <button class="tab" data-tab="team">core team</button>
   </div>
 
-  <!-- WELCOME PANEL (half indo, half eng, dense yapping) -->
+  <!-- WELCOME PANEL (bilingual, banyak yapping) -->
   <div class="panel active" id="panel-welcome">
     <div class="glass-card">
-      <div class="section-head">
-        <i class="fas fa-microchip"></i>
+      <div class="section-header">
+        <i class="fas fa-bolt"></i>
         <h2>tentang / about</h2>
       </div>
-      <div class="desc">
-        XK TEAM adalah kolektif developer, security engineer, dan desainer interface yang fokus menciptakan tools performa tinggi untuk Android. Tidak ada tambang data, tanpa tracking — hanya arsitektur bersih dan latensi minimal.  
-        <br><br>
-        We are a collective focused on high‑performance Android tools: low‑level optimizations, real‑time monitoring, and cross‑platform compatibility. Our ecosystem includes tiered access (Basic, Ultra, Vixo, Delta, Sonic, Lunar, Athena, Privet), Firebase backend, and Shizuku integration.
+      <div class="desc-bilingual">
+        <strong>🇮🇩 XK TEAM</strong> adalah kumpulan engineer, perancang antarmuka, dan pakar keamanan sistem yang fokus pada pengembangan tools performa tinggi untuk Android. Kami percaya bahwa perangkat lunak harus ringan, responsif, dan transparan. Tidak ada pelacak, tidak ada data mining — hanya kode yang efisien dan arsitektur modular.
       </div>
-      <div class="feature-grid">
-        <span class="pill">Boosting aim</span>
-        <span class="pill">hyper response</span>
-        <span class="pill">stability core</span>
-        <span class="pill">precision overlay</span>
-        <span class="pill">smart DPI</span>
-        <span class="pill">GPU/CPU governor</span>
-        <span class="pill">adaptive sync</span>
-        <span class="pill">real‑time monitor</span>
+      <div class="desc-bilingual">
+        <strong>🇬🇧 XK TEAM</strong> is a collective of performance engineers, UI architects and security researchers. We build Android tools with extreme focus on low latency, clean architecture and user privacy. No bloat, no telemetry, just lean code.
       </div>
-      <div class="desc">
-        Modular architecture + weekly edge updates. Over 2000 active installations, 8 privilege tiers, and fully transparent security audits.  
-        <br><br>
-        Fitur unggulan: shell injection via Shizuku, custom crosshair overlay, touch accelerator, dan masih banyak lagi — semuanya tanpa iklan maupun bloatware.
+      <div class="feature-pills">
+        <span class="pill">Boosting Aim</span>
+        <span class="pill">Hyper Response</span>
+        <span class="pill">Stability Core</span>
+        <span class="pill">Precision Overlay</span>
+        <span class="pill">Smart DPI</span>
+        <span class="pill">GPU/CPU Governor</span>
+        <span class="pill">Adaptive Sync</span>
+        <span class="pill">Real‑time monitor</span>
+      </div>
+      <div class="desc-bilingual">
+        Saat ini ekosistem kami mencakup lebih dari 2.000 pengguna aktif dengan 8 tingkatan akses (Basic, Ultra, Vixo, Delta, Sonic, Lunar, Athena, Privet). Setiap modul terintegrasi dengan Firebase backend, dukungan penuh Shizuku, serta sistem update berkala tanpa mengorbankan stabilitas.
+      </div>
+      <div class="divider-light"></div>
+      <div class="desc-bilingual">
+        <strong>✨ fitur unggulan:</strong> shell injection via Shizuku, crosshair overlay kustom, touch accelerator, memory optimizer, dan masih banyak lainnya — semuanya dalam satu aplikasi XK TOOLS.
       </div>
     </div>
   </div>
@@ -410,93 +420,95 @@
   <!-- SUPPORT PANEL -->
   <div class="panel" id="panel-support">
     <div class="glass-card">
-      <div class="section-head">
+      <div class="section-header">
         <i class="fas fa-headset"></i>
         <h2>dukungan / support</h2>
       </div>
-      <div class="desc">
-        Butuh bantuan teknis, upgrade tier, atau ingin melaporkan bug? Tim support merespon dalam 24 jam (GMT+7).  
-        Need technical assistance? We respond within one business day.
+      <div class="desc-bilingual">
+        Butuh bantuan teknis, upgrade tier, atau menemukan bug? Tim support kami merespon dalam waktu maksimal 24 jam (GMT+7).  
+        <strong>🇬🇧 Need technical support? We respond within 24h (GMT+7).</strong>
       </div>
       <div class="contact-line">
         <span class="contact-label"><i class="fab fa-whatsapp"></i> Xyro (owner / support)</span>
         <span class="contact-number">+62 831-5141-3591</span>
         <a href="https://wa.me/6283151413591" class="contact-link" target="_blank">WhatsApp →</a>
       </div>
-      <div class="desc" style="margin-top: 16px;">
-        <i class="fas fa-clock"></i> fast response, dedicated line.
+      <div class="desc-bilingual">
+        <i class="fas fa-clock"></i> Fast response, dedicated line.  
+        Untuk pertanyaan umum, partnership, atau licensing, bisa langsung via WhatsApp.
       </div>
     </div>
   </div>
 
-  <!-- CHANNEL PANEL (no plain url) -->
+  <!-- CHANNEL PANEL (no raw URL displayed) -->
   <div class="panel" id="panel-channel">
     <div class="glass-card" style="text-align: center;">
-      <div class="section-head" style="justify-content: center;">
+      <div class="section-header" style="justify-content: center;">
         <i class="fab fa-whatsapp"></i>
         <h2>saluran resmi</h2>
       </div>
-      <div class="desc">
-        Ikuti WhatsApp channel resmi XK TEAM untuk rilis versi beta, pengumuman maintenance, dan insider preview.  
-        Join our official broadcast channel to stay updated with releases, beta access, and team announcements.
+      <div class="desc-bilingual">
+        🇮🇩 Bergabunglah dengan channel WhatsApp resmi XK TEAM untuk mendapatkan notifikasi rilis beta, maintenance, dan cuplikan fitur terbaru. Tidak ada spam, hanya info penting.
+        <br><br>
+        🇬🇧 Join our official WhatsApp channel to receive beta release notifications, patch notes, and insider updates. No spam, only essential news.
       </div>
-      <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="channel-action" target="_blank">
+      <a href="https://whatsapp.com/channel/0029Vb8VtOLAYlUKg1Ayhm21" class="channel-btn" target="_blank">
         <i class="fab fa-whatsapp"></i> Join channel →
       </a>
-      <div class="desc" style="margin-top: 16px; font-size: 0.7rem;">
-        <i class="fas fa-shield-alt"></i> private · no spam · only news
+      <div class="desc-bilingual" style="margin-top: 1rem; font-size: 0.7rem;">
+        <i class="fas fa-lock"></i> private · members only
       </div>
     </div>
   </div>
 
-  <!-- CORE TEAM PANEL -->
+  <!-- CORE TEAM PANEL (bilingual) -->
   <div class="panel" id="panel-team">
     <div class="glass-card">
-      <div class="section-head">
+      <div class="section-header">
         <i class="fas fa-users"></i>
         <h2>tim / core team</h2>
       </div>
-      <div class="desc">
-        Orang di balik XK TOOLS: kolaborasi antara desain, rekayasa kode, dan keamanan sistem.  
-        The minds behind the project: design, low‑level engineering, and security validation.
+      <div class="desc-bilingual">
+        Di balik XK TOOLS ada sekelompok individu dengan spesialisasi berbeda: desain antarmuka, rekayasa kode, dan validasi keamanan.  
+        <strong>🇬🇧 Behind XK TOOLS: a lean team of interface designers, low‑level engineers and security auditors.</strong>
       </div>
       <div class="team-grid">
         <div class="team-card">
           <div class="team-name">Xyro</div>
           <div class="team-role">founder · lead architect</div>
-          <a href="https://wa.me/6283151413591" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
+          <a href="https://wa.me/6283151413591" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
         </div>
         <div class="team-card">
           <div class="team-name">Vanx</div>
           <div class="team-role">experience designer</div>
-          <a href="https://wa.me/6285211522956" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
+          <a href="https://wa.me/6285211522956" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
         </div>
         <div class="team-card">
           <div class="team-name">Komalx</div>
           <div class="team-role">core engineering</div>
-          <a href="https://wa.me/6281916624978" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
+          <a href="https://wa.me/6281916624978" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
         </div>
         <div class="team-card">
           <div class="team-name">NozzTr</div>
           <div class="team-role">security & validation</div>
-          <a href="https://wa.me/6285691475916" class="wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
+          <a href="https://wa.me/6285691475916" class="wa-mini" target="_blank"><i class="fab fa-whatsapp"></i> contact</a>
         </div>
       </div>
-      <div class="desc">
-        setiap modul menjalani audit keamanan sebelum dirilis ke publik. Transparansi dan keandalan adalah prioritas utama.  
-        Every module undergoes security audit before public release.
+      <div class="desc-bilingual">
+        Setiap modul menjalani audit keamanan sebelum dirilis ke publik. Transparansi dan kualitas adalah prinsip utama.  
+        <strong>🇬🇧 Every module is audited before release. Reliability and transparency are our core principles.</strong>
       </div>
     </div>
   </div>
 
-  <div class="footer-note">
+  <div class="footer">
     © 2026 XK TEAM — crafted with precision. all systems operational.
   </div>
 </div>
 
 <script>
   (function() {
-    // ---------- ADVANCED CANVAS BACKGROUND (THICK PARTICLES, FLOW FIELD) ----------
+    // ========== ENHANCED BACKGROUND CANVAS (thick particles, flow field) ==========
     const canvas = document.getElementById('canvas-bg');
     const ctx = canvas.getContext('2d');
     let w, h;
@@ -510,60 +522,58 @@
       canvas.height = h;
     }
 
-    class Particle {
+    class FlowParticle {
       constructor() {
         this.x = Math.random() * w;
         this.y = Math.random() * h;
-        this.size = Math.random() * 2.2 + 1.2;   // sedikit lebih besar untuk "tebal"
-        this.alpha = Math.random() * 0.65 + 0.2;
-        this.color = `rgba(59, 130, 246, ${this.alpha * 0.85})`;
+        this.size = Math.random() * 2.4 + 1.2;   // tebal
+        this.alpha = Math.random() * 0.7 + 0.2;
+        this.color = `rgba(59, 130, 246, ${this.alpha * 0.9})`;
       }
       update() {
-        // flow field with richer undulation
-        let angle = Math.sin(this.y * 0.006 + time) * 1.6 + Math.cos(this.x * 0.005 + time * 1.2) * 1.4;
-        this.x += Math.cos(angle) * 0.68;
-        this.y += Math.sin(angle) * 0.68;
-        if (this.x < -50) this.x = w + 50;
-        if (this.x > w + 50) this.x = -50;
-        if (this.y < -50) this.y = h + 50;
-        if (this.y > h + 50) this.y = -50;
+        let angle = Math.sin(this.y * 0.006 + time) * 1.7 + Math.cos(this.x * 0.005 + time * 1.3) * 1.5;
+        this.x += Math.cos(angle) * 0.72;
+        this.y += Math.sin(angle) * 0.72;
+        if (this.x < -60) this.x = w + 60;
+        if (this.x > w + 60) this.x = -60;
+        if (this.y < -60) this.y = h + 60;
+        if (this.y > h + 60) this.y = -60;
       }
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
         ctx.fill();
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgba(0, 150, 255, 0.5)';
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = 'rgba(0, 140, 255, 0.5)';
         ctx.fill();
         ctx.shadowBlur = 0;
       }
     }
 
     function initParticles() {
-      const count = Math.min(180, Math.floor(w * 0.12));
+      const count = Math.min(190, Math.floor(w * 0.13));
       particles = [];
-      for (let i = 0; i < count; i++) particles.push(new Particle());
+      for (let i = 0; i < count; i++) particles.push(new FlowParticle());
     }
 
     function animateBg() {
       if (!ctx) return;
       ctx.clearRect(0, 0, w, h);
       const grad = ctx.createLinearGradient(0, 0, w, h);
-      grad.addColorStop(0, '#02040c');
+      grad.addColorStop(0, '#01040e');
       grad.addColorStop(1, '#0a101e');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);
-      time += 0.021;
+      time += 0.022;
       for (let p of particles) p.update();
       for (let p of particles) p.draw();
-      // extra floating glow rings for thickness
-      for (let i = 0; i < 12; i++) {
-        let fx = (Math.sin(time * 0.4 + i) * 0.4 + 0.5) * w;
-        let fy = (Math.cos(time * 0.35 + i * 1.3) * 0.4 + 0.5) * h;
+      for (let i = 0; i < 14; i++) {
+        let fx = (Math.sin(time * 0.4 + i) * 0.45 + 0.5) * w;
+        let fy = (Math.cos(time * 0.35 + i * 1.2) * 0.45 + 0.5) * h;
         ctx.beginPath();
         ctx.arc(fx, fy, 6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 140, 220, 0.07)`;
+        ctx.fillStyle = `rgba(0, 130, 210, 0.06)`;
         ctx.fill();
       }
       requestAnimationFrame(animateBg);
@@ -577,7 +587,7 @@
     initParticles();
     animateBg();
 
-    // ---------- TAB SWITCHING ----------
+    // ========== TAB SWITCHING ==========
     const tabs = document.querySelectorAll('.tab');
     const panels = {
       welcome: document.getElementById('panel-welcome'),
